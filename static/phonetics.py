@@ -27,4 +27,11 @@ def encPhonePerWord(english_sentence):
 
 
 def encPhoneVariants(english_sth):
-    return [encPhone(english_sth), encPhonePerWord(english_sth)]
+    e1 = encPhone(english_sth)
+    e2 = encPhonePerWord(english_sth)
+    result = {}
+    for k,v in e1.items():
+        result["full_"+k]=v
+    for k,v in e2.items():
+        result["per_word_"+k]=v
+    return result
