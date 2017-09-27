@@ -1,4 +1,6 @@
 # coding=utf-8
+xrange = range
+
 def calc_similarity(w1, w2):
     """
 
@@ -6,7 +8,7 @@ def calc_similarity(w1, w2):
     :param w2:
     :return:
     """
-    return   longest_common_substring(w1, w2) / float(max([len(w1), len(w2)]))
+    return len(longest_common_substring(w1, w2)) / float(max([len(w1), len(w2)]))
 
 
 ##

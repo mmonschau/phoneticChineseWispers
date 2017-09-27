@@ -20,8 +20,14 @@ def bag_distance(word1, word2):
     l2 = list(word2)
     for char in l1[:]:
         if char in word2:
-            l1.remove(char)
+            try:
+                l1.remove(char)
+            except ValueError:
+                pass
     for char in l2[:]:
         if char in word1:
-            l1.remove(char)
+            try:
+                l1.remove(char)
+            except ValueError:
+                pass
     return max([len(l1), len(l2)])

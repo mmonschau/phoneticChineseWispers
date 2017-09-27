@@ -16,8 +16,6 @@ def jaccard(word1, word2):
 
     :param word1:
     :param word2:
-    :param n:
-    :param prechar:
     :return:
     """
     l1 = set(word1.split())
