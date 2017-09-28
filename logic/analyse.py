@@ -2,6 +2,7 @@
 # noinspection PyCompatibility
 import statistics
 
+import numpy as np
 from svg.charts import line
 
 from logic.util import unique_prefix
@@ -20,6 +21,21 @@ def analyse_single(data):
     result["avarage match"] = statistics.mean(data.values())
     result["median match"] = statistics.mean(data.values())
     return result
+
+
+def analyse_mult(data):
+    data_matrix = np.array(list(data.values()))
+    d2 = {k: np.array(v) for k, v in data.items()}
+    # Streiche alle algorithmen mit schlechterem als mittlerem Median
+    d2medians = {k: np.median(v) for k, v in d2.items() if np.median(v) >= np.median(data_matrix)}
+    # Streiche von den Verbleibenden Algorithmen alle schlechter als der durchschnitt
+    d3mean = {k: np.mean(v) for k, v in d2medians.items() if
+              k in set(d2medians.keys()) and np.mean(v) >= np.mean(data_matrix)}
+    # Streiche von den Verbleibenden Algorithmen alle mit einer größeren Standartabweichung als der Durchschnitt
+    avg_var = np.mean(np.array(list(map(lambda x: np.var(np.array(x)), list(data.values())))))
+    d4var = {k: np.var(v) for k, v in d3mean.items() if np.var(v) <= avg_var}
+    selected_keys = list(set(d4var.keys()))
+    return {k: data[k] for k in selected_keys}
 
 
 def draw_graph_mult(data, title=""):
