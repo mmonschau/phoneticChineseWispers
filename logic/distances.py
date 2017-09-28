@@ -1,7 +1,14 @@
-from static.statistical import distance_metrics
+# coding=utf-8
+from logic.statistical import distance_metrics
 
 
 def compare(input1, input2):
+    """
+
+    :param input1:
+    :param input2:
+    :return:
+    """
     result = dict()
     for metric, func in distance_metrics.items():
         result[metric] = func(input1, input2)

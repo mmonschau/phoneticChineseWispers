@@ -1,6 +1,7 @@
 # coding=utf-8
 xrange = range
 
+
 def calc_similarity(w1, w2):
     """
 

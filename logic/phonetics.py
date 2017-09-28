@@ -1,12 +1,24 @@
-import jellyfish
+# coding=utf-8
 import re
+
+import jellyfish
 
 
 def normalizeWord(word):
+    """
+
+    :param word:
+    :return:
+    """
     return re.sub("[^\w]", "", word.lower()).strip()
 
 
 def encPhone(english_word):
+    """
+
+    :param english_word:
+    :return:
+    """
     english_word = normalizeWord(english_word)
     # print(english_word)
     encoded = {'origin': english_word, 'metaphone': jellyfish.metaphone(english_word),
@@ -16,6 +28,11 @@ def encPhone(english_word):
 
 
 def encPhonePerWord(english_sentence):
+    """
+
+    :param english_sentence:
+    :return:
+    """
     encoded = {'origin': english_sentence}
     words = list(map(normalizeWord, english_sentence.split()))
     # print(words)
@@ -27,11 +44,16 @@ def encPhonePerWord(english_sentence):
 
 
 def encPhoneVariants(english_sth):
+    """
+
+    :param english_sth:
+    :return:
+    """
     e1 = encPhone(english_sth)
     e2 = encPhonePerWord(english_sth)
     result = {}
-    for k,v in e1.items():
-        result["full_"+k]=v
-    for k,v in e2.items():
-        result["per_word_"+k]=v
+    for k, v in e1.items():
+        result["full_" + k] = v
+    for k, v in e2.items():
+        result["per_word_" + k] = v
     return result
