@@ -25,16 +25,21 @@ def analyse_single(data):
 
 def analyse_mult(data):
     data_matrix = np.array(list(data.values()))
+    selected_keys = list(data.keys())
     d2 = {k: np.array(v) for k, v in data.items()}
     # Streiche alle algorithmen mit schlechterem als mittlerem Median
-    d2medians = {k: np.median(v) for k, v in d2.items() if np.median(v) >= np.median(data_matrix)}
+    selected_keys = [k for k, v in d2.items() if np.median(v) >= np.median(data_matrix)]
     # Streiche von den Verbleibenden Algorithmen alle schlechter als der durchschnitt
-    d3mean = {k: np.mean(v) for k, v in d2medians.items() if
-              k in set(d2medians.keys()) and np.mean(v) >= np.mean(data_matrix)}
+    selected_keys = [k for k, v in d2.items() if k in selected_keys and np.mean(v) >= np.mean(data_matrix)]
     # Streiche von den Verbleibenden Algorithmen alle mit einer größeren Standartabweichung als der Durchschnitt
     avg_var = np.mean(np.array(list(map(lambda x: np.var(np.array(x)), list(data.values())))))
-    d4var = {k: np.var(v) for k, v in d3mean.items() if np.var(v) <= avg_var}
-    selected_keys = list(set(d4var.keys()))
+    selected_keys = [k for k, v in d2.items() if k in selected_keys and np.var(v) <= avg_var]
+    # Streiche von den verbleibenden Werte alle die weniger "Fläche" als der median aller Flächen einschließt ( Integralmethode)
+    d_integral = {k: approx_integral(data[k]) for k in selected_keys}
+    selected_keys = [k for k, v in d_integral.items() if v >= np.mean(np.array(list(d_integral.values())))]
+    if len(selected_keys) > 20:
+        d_integral = {k: approx_integral(data[k]) for k in selected_keys}
+        selected_keys = [k for k, v in d_integral.items() if v >= np.mean(np.array(list(d_integral.values())))]
     return {k: data[k] for k in selected_keys}
 
 
@@ -63,3 +68,11 @@ def draw_graph_mult(data, title=""):
     with open(flnm, "w") as writer:
         writer.write(res)
     return flnm
+
+
+def approx_integral(datum, integral_length=1):
+    datum = list(datum)
+    result = 0
+    for pair in list(zip(datum, datum[1:])):
+        result += (min(pair) + abs(pair[0] - pair[1]) / 2) * integral_length
+    return result
