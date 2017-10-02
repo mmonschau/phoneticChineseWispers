@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Results-View</title>
+</head>
+<body>
+
+<h2>Raw data</h2>
+{% if data %}
+<table border="1">
+    {% for line in data %}
+    <tr>
+        {% for cell in line %}
+        <td>{{ cell }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+{% endif %}
+</body>
+</html>

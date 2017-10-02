@@ -23,7 +23,12 @@ def analyse_single(data):
     return result
 
 
-def analyse_mult(data):
+def filter_mult(data):
+    """
+
+    :param data:
+    :return:
+    """
     data_matrix = np.array(list(data.values()))
     selected_keys = list(data.keys())
     d2 = {k: np.array(v) for k, v in data.items()}
@@ -46,6 +51,7 @@ def analyse_mult(data):
 def draw_graph_mult(data, title=""):
     """
 
+    :param title:
     :param data:
     :return:
     """
@@ -71,6 +77,12 @@ def draw_graph_mult(data, title=""):
 
 
 def approx_integral(datum, integral_length=1):
+    """
+
+    :param datum:
+    :param integral_length:
+    :return:
+    """
     datum = list(datum)
     result = 0
     for pair in list(zip(datum, datum[1:])):
