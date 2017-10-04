@@ -3,15 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <title>Results-View</title>
+    <script src="{{ chartjs }}"></script>
+    <script src="{{ palettejs}}"></script>
+
 </head>
 <body>
+<h1>Results</h1>
+<div style="width:100%;">
+    <canvas id="canvas"></canvas>
+</div>
+<script type="application/javascript">
+    var jsonDataSet = {;
+    {
+        data | tojson | safe
+    }
+    }
+    colors = palette('rainbow', jsonDataSet.length).map(function (hex) {
+        return '#' + hex;
+    });
+    var config = {
+        type: 'line',
+        data: {
+            labels: {;
+    {
+        labels | tojson | safe
+    }
+    },
+    [];
+    },
+    {
+        true,
+            title;
+    :
+        {
+            true,
+                text;
+        :
+            'Best matching algorithms'
+        }
+    ,
+        {
+            'index',
+                intersect;
+        :
+            false,
+        }
+    ,
+        {
+            'nearest',
+                intersect;
+        :
+            true
+        }
+    ,
+        {
+            [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'String'
+                }
+            }],
+                yAxes;
+        :
+            [{
+                display: true,
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Match Rate'
+                }
+            }]
+        }
+    }
+    }
 
+    function addData(jsonData) {
+        var newColor = colors[config.data.datasets.length % colors.length];
+        var newDataset = {
+            label: jsonData.label,
+            backgroundColor: newColor,
+            borderColor: newColor,
+            data: jsonData.data,
+            fill: false
+        };
+        config.data.datasets.push(newDataset);
+    }
+
+    jsonDataSet.forEach(addData);
+
+    window.onload = function () {
+        var ctx = document.getElementById("canvas").getContext("2d");
+        window.myLine = new Chart(ctx, config);
+    };
+
+</script>
 <h2>Raw data</h2>
 {% if data %}
 <table border="1">
     {% for line in data %}
     <tr>
-        {% for cell in line %}
+        <th> {{ line.label }}</th>
+        {% for cell in line.data %}
         <td>{{ cell }}</td>
         {% endfor %}
     </tr>

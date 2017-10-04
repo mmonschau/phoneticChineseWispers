@@ -1,9 +1,8 @@
 # coding=utf-8
 import json
 from os import path
-from string import Template
 
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, url_for
 
 import analyse
 import compare
@@ -13,11 +12,6 @@ path_root = path.dirname(path.abspath(__file__))
 template_root = path.join(path_root, "templates")
 data_root = path.join(path_root, "data")
 app = Flask(__name__)
-
-
-def procc_template(template_file, inserts={}):
-    template = Template(open(template_file, "r").read())
-    return template.safe_substitute(inserts)
 
 
 @app.route('/')
@@ -31,10 +25,7 @@ def hello_world():
 
 @app.route('/input')
 def input_all():
-    page = procc_template(path.join(template_root, "Header.html"), {'title': "PyChineseWhispers Input"})
-    page += procc_template(path.join(template_root, "Input.html"))
-    page += procc_template(path.join(template_root, "Footer.html"))
-    return page
+    return render_template('InputView.html')
 
 
 @app.route('/result', methods=['POST', 'GET'])
@@ -50,7 +41,13 @@ def result():
         for k, v in results.items():
             print(v)
             results[k] = list(map(lambda x: round(x, 3), v))
-        return render_template('ResultView.html', data=[[k] + v for k, v in results.items()])
+        processedData = []
+        for k, v in results.items():
+            processedData.append({'label': k, 'data': v})
+        return render_template('ResultView.html', data=processedData,
+                               chartjs=(url_for('static', filename='js/Chart.bundle.min.js')),
+                               palettejs=(url_for('static', filename='js/palette.js')),
+                               labels=data[1:])
 
 
 if __name__ == '__main__':
