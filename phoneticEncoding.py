@@ -40,23 +40,26 @@ def result():
     :return:
     """
     if request.method == 'POST':
-        raw_data = request.form
-        data = dict(raw_data)['whispers'][0].split("\n")
-        data = list(filter(lambda x: x, map(lambda x: x.strip(), data)))
+        raw_input_data = request.form
+        input_data = dict(raw_input_data)['whispers'][0].split("\n")
+        input_data = list(filter(lambda x: x, map(lambda x: x.strip(), input_data)))
         with open(path.join(data_root, unique_prefix() + ".json"), "w") as writer:
-            json.dump(data, writer)
-        results = compare.mult_full_compare(data)
+            json.dump(input_data, writer)
+        results = compare.mult_full_compare(input_data)
         filtered_data = analyse.filter_mult(results)
-        print(filtered_data)
         processedData = []
         for k, v in filtered_data.items():
             row = {'label': k, 'data': list(map(lambda x: round(x, 3), v))}
             row.update({k1: round(v1, 3) for k1, v1 in analyse.analyse_row(v).items()})
             processedData.append(row)
+        max_var = max(map(lambda x: x['variance'],processedData))
+        max_integral = max(map(lambda x: x['norm_integral'], processedData))
         return render_template('ResultView.html', data=processedData,
                                chartjs=(url_for('static', filename='js/Chart.bundle.min.js')),
                                palettejs=(url_for('static', filename='js/palette.min.js')),
-                               labels=data[1:])
+                               labels=input_data,
+                               max_var=max_var,
+                               max_integral=max_integral)
 
 
 if __name__ == '__main__':

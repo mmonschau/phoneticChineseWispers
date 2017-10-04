@@ -21,7 +21,7 @@
 <table border="1">
     {% for line in data %}
     <tr>
-        <th> {{ line.label }}</th>
+        <th>  {{ line.label }}  </th>
         {% for cell in line.data %}
         <td>{{ cell }}</td>
         {% endfor %}
@@ -45,9 +45,9 @@
         <th>var</th>
         <th>integral</th>
     </tr>
-    {% for line in data %}
+        {% for line in data %}
     <tr>
-        <th> {{ line.label }}</th>
+        <th>  {{ line.label }}  </th>
         <td> {{ line.min }}</td>
         <td> {{ line.max }}</td>
         <td> {{ line.mean }}</td>
@@ -59,15 +59,10 @@
 </table>
 
 <script type="application/javascript">
-    var jsonDataSet = {
-    {
-        data | tojson | safe
-    }
-    }
-    ;
-    colors = palette('rainbow', jsonDataSet.length).map(function (hex) {
+    var jsonDataSet = {{ data|tojson|safe }};
+    colors = palette('rainbow',jsonDataSet.length).map(function(hex) {
         return '#' + hex;
-    })
+      })
     var config_line = {
         type: 'line',
         data: {
@@ -104,7 +99,7 @@
                     },
                     ticks: {
                         beginAtZero: false
-                    }
+                     }
                 }]
             }
         }
@@ -113,7 +108,7 @@
     var config_radar = {
         type: 'radar',
         data: {
-            labels: ["min", "max", "mean", "median", "var", "integral"],
+            labels: ["min","max","mean","median","var","integral"],
             datasets: []
         },
         options: {
@@ -131,15 +126,15 @@
                 intersect: true
             },
             scales: {
-                display: false
+               display: false
             }
         }
     };
 
 
-
     function addData(jsonData) {
-        var newColor = colors[config_line.data.datasets.length % colors.length];
+        var newColor = colors[config_line.data.datasets.length % colors.length]
+        jsonData.data.unshift(1)
         var newDataset = {
             label: jsonData.label,
             backgroundColor: newColor,
@@ -148,19 +143,22 @@
             fill: false
         };
         config_line.data.datasets.push(newDataset);
-        newDataset.data = [jsonData.min, jsonData.max, jsonData.mean, jsonData.median, jsonData.variance, jsonData.norm_integral]
-        config_radar.data.datasets.push(newDataset);
+        var radarDataset = {
+            label: jsonData.label,
+            backgroundColor: newColor,
+            borderColor: newColor,
+            data: [jsonData.min,jsonData.max,jsonData.mean,jsonData.median,jsonData.variance/{{max_var}},jsonData.norm_integral/{{ max_integral }}],
+            fill: false
+        };
+        config_radar.data.datasets.push(radarDataset);
     }
 
-    config_line.data.labels = {
-    {
-        labels | tojson | safe
-    }
-    }
-    ;
+    config_line.data.labels = {{ labels|tojson|safe }};
     jsonDataSet.forEach(addData);
 
-    window.onload = function () {
+        console.log(config_line.data.datasets)
+        console.log(config_radar.data.datasets)
+        window.onload = function () {
         var ctx_line = document.getElementById("line_chart").getContext("2d");
         window.myLine = new Chart(ctx_line, config_line);
         var ctx_radar = document.getElementById("radar_chart").getContext("2d");
