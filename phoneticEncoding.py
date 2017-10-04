@@ -25,11 +25,20 @@ def hello_world():
 
 @app.route('/input')
 def input_all():
+    """
+
+    :return:
+    """
     return render_template('InputView.html')
 
 
+# noinspection PyPep8Naming
 @app.route('/result', methods=['POST', 'GET'])
 def result():
+    """
+
+    :return:
+    """
     if request.method == 'POST':
         raw_data = request.form
         data = dict(raw_data)['whispers'][0].split("\n")
@@ -38,15 +47,15 @@ def result():
             json.dump(data, writer)
         results = compare.mult_full_compare(data)
         filtered_data = analyse.filter_mult(results)
-        for k, v in results.items():
-            print(v)
-            results[k] = list(map(lambda x: round(x, 3), v))
+        print(filtered_data)
         processedData = []
-        for k, v in results.items():
-            processedData.append({'label': k, 'data': v})
+        for k, v in filtered_data.items():
+            row = {'label': k, 'data': list(map(lambda x: round(x, 3), v))}
+            row.update({k1: round(v1, 3) for k1, v1 in analyse.analyse_row(v).items()})
+            processedData.append(row)
         return render_template('ResultView.html', data=processedData,
                                chartjs=(url_for('static', filename='js/Chart.bundle.min.js')),
-                               palettejs=(url_for('static', filename='js/palette.js')),
+                               palettejs=(url_for('static', filename='js/palette.min.js')),
                                labels=data[1:])
 
 

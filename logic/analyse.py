@@ -8,7 +8,7 @@ from svg.charts import line
 from logic.util import unique_prefix
 
 
-def analyse_single(data):
+def analyse_single_pair(data):
     """
 
     :param data:
@@ -22,6 +22,18 @@ def analyse_single(data):
     result["median match"] = statistics.mean(data.values())
     return result
 
+
+def analyse_row(data):
+    result = {}
+    result['max'] = max(data)
+    result['min'] = min(data)
+    result['integral'] = approx_integral(data)
+    result['norm_integral'] = result['integral'] / len(data)
+    np_data = np.array(list(data))
+    result['mean'] = np.mean(np_data)
+    result['median'] = np.median(np_data)
+    result['variance'] = np.var(np_data)
+    return result
 
 def filter_mult(data):
     """
@@ -42,7 +54,7 @@ def filter_mult(data):
     # Streiche von den verbleibenden Werte alle die weniger "Fläche" als der median aller Flächen einschließt ( Integralmethode)
     d_integral = {k: approx_integral(data[k]) for k in selected_keys}
     selected_keys = [k for k, v in d_integral.items() if v >= np.mean(np.array(list(d_integral.values())))]
-    if len(selected_keys) > 20:
+    while len(selected_keys) > 10:
         d_integral = {k: approx_integral(data[k]) for k in selected_keys}
         selected_keys = [k for k, v in d_integral.items() if v >= np.mean(np.array(list(d_integral.values())))]
     return {k: data[k] for k in selected_keys}

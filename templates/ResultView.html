@@ -3,102 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Results-View</title>
+
+    {% if data %}
     <script src="{{ chartjs }}"></script>
     <script src="{{ palettejs}}"></script>
-
+    {% endif %}
 </head>
-<body>
+<body style="alignment:center">
+{% if data %}
 <h1>Results</h1>
 <div style="width:100%;">
-    <canvas id="canvas"></canvas>
+    <canvas id="line_chart"></canvas>
 </div>
-<script type="application/javascript">
-    var jsonDataSet = {;
-    {
-        data | tojson | safe
-    }
-    }
-    colors = palette('rainbow', jsonDataSet.length).map(function (hex) {
-        return '#' + hex;
-    });
-    var config = {
-        type: 'line',
-        data: {
-            labels: {;
-    {
-        labels | tojson | safe
-    }
-    },
-    [];
-    },
-    {
-        true,
-            title;
-    :
-        {
-            true,
-                text;
-        :
-            'Best matching algorithms'
-        }
-    ,
-        {
-            'index',
-                intersect;
-        :
-            false,
-        }
-    ,
-        {
-            'nearest',
-                intersect;
-        :
-            true
-        }
-    ,
-        {
-            [{
-                display: true,
-                scaleLabel: {
-                    display: true,
-                    labelString: 'String'
-                }
-            }],
-                yAxes;
-        :
-            [{
-                display: true,
-                scaleLabel: {
-                    display: true,
-                    labelString: 'Match Rate'
-                }
-            }]
-        }
-    }
-    }
 
-    function addData(jsonData) {
-        var newColor = colors[config.data.datasets.length % colors.length];
-        var newDataset = {
-            label: jsonData.label,
-            backgroundColor: newColor,
-            borderColor: newColor,
-            data: jsonData.data,
-            fill: false
-        };
-        config.data.datasets.push(newDataset);
-    }
-
-    jsonDataSet.forEach(addData);
-
-    window.onload = function () {
-        var ctx = document.getElementById("canvas").getContext("2d");
-        window.myLine = new Chart(ctx, config);
-    };
-
-</script>
 <h2>Raw data</h2>
-{% if data %}
+
 <table border="1">
     {% for line in data %}
     <tr>
@@ -109,6 +28,147 @@
     </tr>
     {% endfor %}
 </table>
+
+<h2>Comparison</h2>
+
+<div style="width:100%;">
+    <canvas id="radar_chart"></canvas>
+</div>
+
+<table border="1">
+    <tr>
+        <th>Algorithm</th>
+        <th>min</th>
+        <th>max</th>
+        <th>mean</th>
+        <th>median</th>
+        <th>var</th>
+        <th>integral</th>
+    </tr>
+    {% for line in data %}
+    <tr>
+        <th> {{ line.label }}</th>
+        <td> {{ line.min }}</td>
+        <td> {{ line.max }}</td>
+        <td> {{ line.mean }}</td>
+        <td> {{ line.median }}</td>
+        <td> {{ line.variance }}</td>
+        <td> {{ line.integral }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<script type="application/javascript">
+    var jsonDataSet = {
+    {
+        data | tojson | safe
+    }
+    }
+    ;
+    colors = palette('rainbow', jsonDataSet.length).map(function (hex) {
+        return '#' + hex;
+    })
+    var config_line = {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: []
+        },
+        options: {
+            responsive: true,
+            title: {
+                display: true,
+                text: 'Best matching algorithms'
+            },
+            tooltips: {
+                mode: 'point',
+                intersect: false,
+            },
+            hover: {
+                mode: 'point',
+                intersect: true
+            },
+            scales: {
+                xAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'String'
+                    }
+                }],
+                yAxes: [{
+                    display: true,
+                    scaleLabel: {
+                        display: true,
+                        labelString: 'Match Rate',
+                    },
+                    ticks: {
+                        beginAtZero: false
+                    }
+                }]
+            }
+        }
+    };
+
+    var config_radar = {
+        type: 'radar',
+        data: {
+            labels: ["min", "max", "mean", "median", "var", "integral"],
+            datasets: []
+        },
+        options: {
+            responsive: true,
+            title: {
+                display: true,
+                text: 'Best matching algorithms'
+            },
+            tooltips: {
+                mode: 'point',
+                intersect: false,
+            },
+            hover: {
+                mode: 'point',
+                intersect: true
+            },
+            scales: {
+                display: false
+            }
+        }
+    };
+
+
+
+    function addData(jsonData) {
+        var newColor = colors[config_line.data.datasets.length % colors.length];
+        var newDataset = {
+            label: jsonData.label,
+            backgroundColor: newColor,
+            borderColor: newColor,
+            data: jsonData.data,
+            fill: false
+        };
+        config_line.data.datasets.push(newDataset);
+        newDataset.data = [jsonData.min, jsonData.max, jsonData.mean, jsonData.median, jsonData.variance, jsonData.norm_integral]
+        config_radar.data.datasets.push(newDataset);
+    }
+
+    config_line.data.labels = {
+    {
+        labels | tojson | safe
+    }
+    }
+    ;
+    jsonDataSet.forEach(addData);
+
+    window.onload = function () {
+        var ctx_line = document.getElementById("line_chart").getContext("2d");
+        window.myLine = new Chart(ctx_line, config_line);
+        var ctx_radar = document.getElementById("radar_chart").getContext("2d");
+        window.myLine = new Chart(ctx_radar, config_radar);
+    };
+
+</script>
+
 {% endif %}
 </body>
 </html>
