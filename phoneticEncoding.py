@@ -46,13 +46,16 @@ def result():
         with open(path.join(data_root, unique_prefix() + ".json"), "w") as writer:
             json.dump(input_data, writer)
         results = compare.mult_full_compare(input_data)
-        filtered_data = analyse.filter_mult(results)
+        filtered_data = results
+        while len(filtered_data) > 10:
+            filtered_data = analyse.filter_mult(filtered_data)
         processedData = []
         for k, v in filtered_data.items():
+            # for k, v in results.items():
             row = {'label': k, 'data': list(map(lambda x: round(x, 3), v))}
             row.update({k1: round(v1, 3) for k1, v1 in analyse.analyse_row(v).items()})
             processedData.append(row)
-        max_var = max(map(lambda x: x['variance'],processedData))
+        max_var = max(map(lambda x: x['variance'], processedData))
         max_integral = max(map(lambda x: x['norm_integral'], processedData))
         return render_template('ResultView.html', data=processedData,
                                chartjs=(url_for('static', filename='js/Chart.bundle.min.js')),
