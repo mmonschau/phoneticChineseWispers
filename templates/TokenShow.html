@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Token show page</title>
+    <link rel="stylesheet" href="{{ hackcss }}">
+</head>
+{% if fontsize %}
+<body style="text-align: center;font-family: Hack, monospace;font-size: {{ fontsize }}">
+{% else %}
+<body style="text-align: center;font-family: Hack, monospace;font-size: xx-large">
+{% endif %}
+<h1>{{ token }}</h1>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Input Arrange</title>
+</head>
+<style type="text/css">
+    body{
+        text-align: center;
+    }
+    table {
+        margin-left: auto;
+        margin-right: auto
+    }
+</style>
+<body>
+<form action="save_data" method="post">
+
+    <table>
+        <tr>
+            <td>0</td>
+            <td colspan="2"><textarea type="text" name="original" cols="60"></textarea></td>
+        </tr>
+        {% for line in userinput %}
+        <tr>
+            <td><input type="number" min="-100" step="1" value="{{line.number}}" name="inputno[]"/></td>
+            <td><input type="text" value="{{line.input}}" name="userinput[]" readonly/></td>
+            <td>{{line.uuid}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <input type="submit">
+</form>
+</body>
+</html>

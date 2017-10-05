@@ -28,7 +28,7 @@ def hex_to_string(hex, reference_alphabet=create_alphabet_from_ascii()):
 
 
 def gen_token(alphabet=get_alphanum_alphabet()):
-    return "".join(map(lambda x: hex_to_string(x, alphabet), str(uuid4()).split("-")[1:-1]))
+    return "".join(map(lambda x: hex_to_string(x, alphabet), str(uuid4()).split("-")[1:-2]))
 
 
 def unique_prefix(alphabet=get_alphanum_alphabet()):

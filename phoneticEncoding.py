@@ -2,25 +2,56 @@
 import json
 from os import path
 
-from flask import Flask, request, render_template, url_for
+from flask import Flask, request, render_template, url_for, abort, make_response, redirect
 
 import analyse
 import compare
-from util import unique_prefix
+import storage.userInputCache
+import util
 
 path_root = path.dirname(path.abspath(__file__))
 template_root = path.join(path_root, "templates")
 data_root = path.join(path_root, "data")
 app = Flask(__name__)
+storage.userInputCache.create_DB(app.debug)
+
+
+# method for union of get an post-data (post overrides get)
+def getAllRequestData():
+    result = dict(request.args)
+    result.update(dict(request.form))
+    return result
+
+
+def getUUID():
+    uuid = request.cookies.get('UUID')
+    if not uuid:
+        uuid = request.form.get('uuid')
+        if not uuid:
+            uuid = util.unique_prefix(util.create_alphabet_from_ascii())
+    return uuid
+
+
+@app.route('/id')
+def id_page():
+    uuid = getUUID()
+    resp = make_response(
+        render_template('TokenShow.html', hackcss=url_for('static', filename='css/hack.min.css'), token=uuid,
+                        fontsize="large"))
+    resp.set_cookie('UUID', uuid)
+    return resp
 
 
 @app.route('/')
-def hello_world():
+def index_page():
     """
 
     :return:
     """
-    return 'Hello World!'
+    uuid = getUUID()
+    resp = make_response(render_template('Index.html'))
+    resp.set_cookie('UUID', uuid)
+    return resp
 
 
 @app.route('/input')
@@ -32,6 +63,53 @@ def input_all():
     return render_template('InputView.html')
 
 
+@app.route('/input_single', methods=['POST', 'GET'])
+def input_single():
+    raw_input_data = getAllRequestData()
+    token = raw_input_data.get("token")
+    if token:
+        uuid = getUUID()
+        resp = make_response(render_template("InputSingle.html", token=token[0], UUID=uuid))
+        resp.set_cookie('UUID', uuid)
+        return resp
+    return abort(400)
+
+@app.route('/submit_single', methods=['POST', 'GET'])
+def single_submission_handle():
+    raw_input_data = getAllRequestData()
+    if raw_input_data:
+        heard = raw_input_data.get('heared')
+        row_number = raw_input_data.get('row_number')
+        token = raw_input_data.get('token')
+        if heard and row_number and token:
+            storage.userInputCache.insert_user_entry(getUUID(),token[0],row_number[0],heard[0])
+            return redirect(url_for('id_page'))
+    return abort(400)
+
+@app.route('/admin')
+def admin_page():
+    tokens = storage.userInputCache.get_tokens()
+    return render_template('admin.html', tokens=tokens)
+
+
+@app.route('/organizeInput', methods=['POST', 'GET'])
+def reorder_user_input():
+    raw_input_data = getAllRequestData()
+    token = raw_input_data.get("token")
+    if token:
+        userinput = storage.userInputCache.get_user_entries_by_token(token[0])
+        return render_template('SingleInputJoin.html',userinput=userinput)
+    return abort(400)
+
+
+
+@app.route('/createToken')
+def create_token_page():
+    token = util.gen_token()
+    storage.userInputCache.insert_token(token)
+    return render_template('TokenShow.html', hackcss=url_for('static', filename='css/hack.min.css'), token=token)
+
+
 # noinspection PyPep8Naming
 @app.route('/result', methods=['POST', 'GET'])
 def result():
@@ -39,16 +117,18 @@ def result():
 
     :return:
     """
-    if request.method == 'POST':
-        raw_input_data = request.form
-        input_data = dict(raw_input_data)['whispers'][0].split("\n")
+    raw_input_data = getAllRequestData()
+    if raw_input_data:
+        input_data = raw_input_data['whispers'][0].split("\n")
         input_data = list(filter(lambda x: x, map(lambda x: x.strip(), input_data)))
-        with open(path.join(data_root, unique_prefix() + ".json"), "w") as writer:
+        with open(path.join(data_root, util.unique_prefix() + ".json"), "w") as writer:
             json.dump(input_data, writer)
         results = compare.mult_full_compare(input_data)
         filtered_data = results
         while len(filtered_data) > 10:
             filtered_data = analyse.filter_mult(filtered_data)
+        if not len(filtered_data):
+            filtered_data = results
         processedData = []
         for k, v in filtered_data.items():
             # for k, v in results.items():
