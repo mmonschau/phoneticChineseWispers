@@ -1,6 +1,6 @@
 # coding=utf-8
 import json
-from os import path
+from os import path, listdir
 
 from flask import Flask, request, render_template, url_for, abort, make_response, redirect
 
@@ -179,6 +179,10 @@ def result():
                                    max_integral=max_integral)
     return abort(400)
 
-
+@app.route('/result_overview')
+def result_overview():
+    data = listdir(data_storage)
+    data = list(map(lambda x:".".join(x.split(".")[:-1]),data))
+    return render_template("PreviousRuns.html",data=data)
 if __name__ == '__main__':
     app.run()

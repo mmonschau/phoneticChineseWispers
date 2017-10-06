@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Previous Runs</title>
+    <style type="text/css">
+    body{
+        text-align: center;
+    }
+    table {
+        margin-left: auto;
+        margin-right: auto
+    }
+</style>
+</head>
+<body>
+ {% for data_id in data %}
+    <form action="result" method="get">
+        <input type="text" name="data_id" value="{{data_id}}" readonly/>
+        <input type="submit" value="show"/>
+    </form>
+    <br/>
+ {% endfor %}
+</body>
+</html>
