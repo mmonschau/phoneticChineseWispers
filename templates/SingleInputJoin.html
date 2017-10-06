@@ -19,16 +19,18 @@
     <table>
         <tr>
             <td>0</td>
-            <td colspan="2"><textarea type="text" name="original" cols="60"></textarea></td>
+            <td colspan="3"><textarea type="text" name="original" cols="60"></textarea></td>
         </tr>
         {% for line in userinput %}
         <tr>
-            <td><input type="number" min="-100" step="1" value="{{line.number}}" name="inputno[]"/></td>
-            <td><input type="text" value="{{line.input}}" name="userinput[]" readonly/></td>
+            <td><input type="number" min="-100" step="1" value="{{line.number}}" name="inputno"/></td>
+            <td><input type="text" value="{{line.input}}" name="userinput" readonly/></td>
+            <td><input type="checkbox" checked name="useable"/></td>
             <td>{{line.uuid}}</td>
         </tr>
         {% endfor %}
     </table>
+    <input type="checkbox" name="joined_input" checked hidden/>
     <input type="submit">
 </form>
 </body>

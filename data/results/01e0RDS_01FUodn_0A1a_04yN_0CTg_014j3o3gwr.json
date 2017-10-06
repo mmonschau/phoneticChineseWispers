@@ -1,0 +1,1036 @@
+{
+	"encoding": [
+		{
+			"full_match_rating_codex": "GNS",
+			"full_metaphone": "JNS",
+			"full_nysiis": "GAN",
+			"full_origin": "GENIUS",
+			"full_soundex": "G520",
+			"per_word_match_rating_codex": "GNS",
+			"per_word_metaphone": "JNS",
+			"per_word_nysiis": "GAN",
+			"per_word_origin": "GENIUS",
+			"per_word_soundex": "G520"
+		},
+		{
+			"full_match_rating_codex": "GN",
+			"full_metaphone": "JN",
+			"full_nysiis": "GAN",
+			"full_origin": "GENE",
+			"full_soundex": "G500",
+			"per_word_match_rating_codex": "GN",
+			"per_word_metaphone": "JN",
+			"per_word_nysiis": "GAN",
+			"per_word_origin": "GENE",
+			"per_word_soundex": "G500"
+		},
+		{
+			"full_match_rating_codex": "JN",
+			"full_metaphone": "JN",
+			"full_nysiis": "JAN",
+			"full_origin": "JEANE",
+			"full_soundex": "J500",
+			"per_word_match_rating_codex": "JN",
+			"per_word_metaphone": "JN",
+			"per_word_nysiis": "JAN",
+			"per_word_origin": "JEANE",
+			"per_word_soundex": "J500"
+		},
+		{
+			"full_match_rating_codex": "GN",
+			"full_metaphone": "JN",
+			"full_nysiis": "GAN",
+			"full_origin": "GIN",
+			"full_soundex": "G500",
+			"per_word_match_rating_codex": "GN",
+			"per_word_metaphone": "JN",
+			"per_word_nysiis": "GAN",
+			"per_word_origin": "GIN",
+			"per_word_soundex": "G500"
+		},
+		{
+			"full_match_rating_codex": "DJNN",
+			"full_metaphone": "TJN",
+			"full_nysiis": "DJAN",
+			"full_origin": "DJINN",
+			"full_soundex": "D250",
+			"per_word_match_rating_codex": "DJNN",
+			"per_word_metaphone": "TJN",
+			"per_word_nysiis": "DJAN",
+			"per_word_origin": "DJINN",
+			"per_word_soundex": "D250"
+		}
+	],
+	"high_value_algorithms": [
+		"Levenshtein Distance: per_word_metaphone",
+		"Levenshtein Distance: full_metaphone",
+		"Longest common substring: full_metaphone",
+		"Damerau Levenshtein Distance: per_word_metaphone",
+		"Longest common substring: per_word_metaphone",
+		"Dice Coefficient: full_metaphone",
+		"Dice Coefficient: per_word_metaphone",
+		"Damerau Levenshtein Distance: full_metaphone"
+	],
+	"results": [
+		{
+			"algorithm": "Damerau Levenshtein Distance: per_word_soundex",
+			"integral": 2.0,
+			"max": 0.75,
+			"mean": 0.625,
+			"median": 0.75,
+			"min": 0.25,
+			"norm_integral": 0.5,
+			"results": [
+				0.75,
+				0.75,
+				0.75,
+				0.25
+			],
+			"variance": 0.046875
+		},
+		{
+			"algorithm": "Dice Coefficient: per_word_match_rating_codex",
+			"integral": 0.3333333333333333,
+			"max": 0.6666666666666666,
+			"mean": 0.16666666666666666,
+			"median": 0.0,
+			"min": 0.0,
+			"norm_integral": 0.08333333333333333,
+			"results": [
+				0.6666666666666666,
+				0.0,
+				0.0,
+				0.0
+			],
+			"variance": 0.08333333333333334
+		},
+		{
+			"algorithm": "Sequence Matching: full_metaphone",
+			"integral": 0.0,
+			"max": 0.0,
+			"mean": 0.0,
+			"median": 0.0,
+			"min": 0.0,
+			"norm_integral": 0.0,
+			"results": [
+				0.0,
+				0.0,
+				0.0,
+				0.0
+			],
+			"variance": 0.0
+		},
+		{
+			"algorithm": "Levenshtein Distance: full_origin",
+			"integral": 1.25,
+			"max": 0.6,
+			"mean": 0.42500000000000004,
+			"median": 0.45,
+			"min": 0.19999999999999996,
+			"norm_integral": 0.3125,
+			"results": [
+				0.5,
+				0.6,
+				0.19999999999999996,
+				0.4
+			],
+			"variance": 0.021875000000000002
+		},
+		{
+			"algorithm": "Levenshtein Distance: full_match_rating_codex",
+			"integral": 1.4583333333333335,
+			"max": 0.6666666666666667,
+			"mean": 0.4791666666666667,
+			"median": 0.5,
+			"min": 0.25,
+			"norm_integral": 0.36458333333333337,
+			"results": [
+				0.6666666666666667,
+				0.5,
+				0.5,
+				0.25
+			],
+			"variance": 0.02213541666666667
+		},
+		{
+			"algorithm": "Hamming Distance: per_word_match_rating_codex",
+			"integral": 1.3333333333333335,
+			"max": 0.6666666666666667,
+			"mean": 0.4166666666666667,
+			"median": 0.5,
+			"min": 0.0,
+			"norm_integral": 0.33333333333333337,
+			"results": [
+				0.6666666666666667,
+				0.5,
+				0.5,
+				0.0
+			],
+			"variance": 0.06250000000000001
+		},
+		{
+			"algorithm": "Longest common substring: per_word_metaphone",
+			"integral": 2.6666666666666665,
+			"max": 1.0,
+			"mean": 0.8333333333333333,
+			"median": 0.8333333333333333,
+			"min": 0.6666666666666666,
+			"norm_integral": 0.6666666666666666,
+			"results": [
+				0.6666666666666666,
+				1.0,
+				1.0,
+				0.6666666666666666
+			],
+			"variance": 0.027777777777777783
+		},
+		{
+			"algorithm": "Damerau Levenshtein Distance: full_soundex",
+			"integral": 2.0,
+			"max": 0.75,
+			"mean": 0.625,
+			"median": 0.75,
+			"min": 0.25,
+			"norm_integral": 0.5,
+			"results": [
+				0.75,
+				0.75,
+				0.75,
+				0.25
+			],
+			"variance": 0.046875
+		},
+		{
+			"algorithm": "Damerau Levenshtein Distance: full_origin",
+			"integral": 1.25,
+			"max": 0.6,
+			"mean": 0.42500000000000004,
+			"median": 0.45,
+			"min": 0.19999999999999996,
+			"norm_integral": 0.3125,
+			"results": [
+				0.5,
+				0.6,
+				0.19999999999999996,
+				0.4
+			],
+			"variance": 0.021875000000000002
+		},
+		{
+			"algorithm": "Longest common substring: full_metaphone",
+			"integral": 2.6666666666666665,
+			"max": 1.0,
+			"mean": 0.8333333333333333,
+			"median": 0.8333333333333333,
+			"min": 0.6666666666666666,
+			"norm_integral": 0.6666666666666666,
+			"results": [
+				0.6666666666666666,
+				1.0,
+				1.0,
+				0.6666666666666666
+			],
+			"variance": 0.027777777777777783
+		},
+		{
+			"algorithm": "Sequence Matching: per_word_soundex",
+			"integral": 0.0,
+			"max": 0.0,
+			"mean": 0.0,
+			"median": 0.0,
+			"min": 0.0,
+			"norm_integral": 0.0,
+			"results": [
+				0.0,
+				0.0,
+				0.0,
+				0.0
+			],
+			"variance": 0.0
+		},
+		{
+			"algorithm": "Dice Coefficient: full_metaphone",
+			"integral": 2.6666666666666665,
+			"max": 1.0,
+			"mean": 0.8333333333333333,
+			"median": 0.8333333333333333,
+			"min": 0.6666666666666666,
+			"norm_integral": 0.6666666666666666,
+			"results": [
+				0.6666666666666666,
+				1.0,
+				1.0,
+				0.6666666666666666
+			],
+			"variance": 0.027777777777777783
+		},
+		{
+			"algorithm": "Dice Coefficient: full_origin",
+			"integral": 0.7023809523809523,
+			"max": 0.5,
+			"mean": 0.27976190476190477,
+			"median": 0.30952380952380953,
+			"min": 0.0,
+			"norm_integral": 0.17559523809523808,
+			"results": [
+				0.5,
+				0.2857142857142857,
+				0.0,
+				0.3333333333333333
+			],
+			"variance": 0.03241921768707483
+		},
+		{
+			"algorithm": "Longest common substring: full_origin",
+			"integral": 1.05,
+			"max": 0.5,
+			"mean": 0.375,
+			"median": 0.4,
+			"min": 0.2,
+			"norm_integral": 0.2625,
+			"results": [
+				0.5,
+				0.4,
+				0.2,
+				0.4
+			],
+			"variance": 0.011875
+		},
+		{
+			"algorithm": "Damerau Levenshtein Distance: full_metaphone",
+			"integral": 2.666666666666667,
+			"max": 1.0,
+			"mean": 0.8333333333333335,
+			"median": 0.8333333333333334,
+			"min": 0.6666666666666667,
+			"norm_integral": 0.6666666666666667,
+			"results": [
+				0.6666666666666667,
+				1.0,
+				1.0,
+				0.6666666666666667
+			],
+			"variance": 0.027777777777777766
+		},
+		{
+			"algorithm": "Dice Coefficient: per_word_soundex",
+			"integral": 1.6666666666666665,
+			"max": 0.6666666666666666,
+			"mean": 0.49999999999999994,
+			"median": 0.5,
+			"min": 0.3333333333333333,
+			"norm_integral": 0.41666666666666663,
+			"results": [
+				0.3333333333333333,
+				0.6666666666666666,
+				0.6666666666666666,
+				0.3333333333333333
+			],
+			"variance": 0.027777777777777776
+		},
+		{
+			"algorithm": "Hamming Distance: per_word_nysiis",
+			"integral": 1.8333333333333335,
+			"max": 1.0,
+			"mean": 0.5833333333333334,
+			"median": 0.6666666666666667,
+			"min": 0.0,
+			"norm_integral": 0.45833333333333337,
+			"results": [
+				1.0,
+				0.6666666666666667,
+				0.6666666666666667,
+				0.0
+			],
+			"variance": 0.13194444444444445
+		},
+		{
+			"algorithm": "Damerau Levenshtein Distance: per_word_origin",
+			"integral": 1.25,
+			"max": 0.6,
+			"mean": 0.42500000000000004,
+			"median": 0.45,
+			"min": 0.19999999999999996,
+			"norm_integral": 0.3125,
+			"results": [
+				0.5,
+				0.6,
+				0.19999999999999996,
+				0.4
+			],
+			"variance": 0.021875000000000002
+		},
+		{
+			"algorithm": "Hamming Distance: full_origin",
+			"integral": 0.44999999999999996,
+			"max": 0.5,
+			"mean": 0.175,
+			"median": 0.09999999999999998,
+			"min": 0.0,
+			"norm_integral": 0.11249999999999999,
+			"results": [
+				0.5,
+				0.19999999999999996,
+				0.0,
+				0.0
+			],
+			"variance": 0.041874999999999996
+		},
+		{
+			"algorithm": "Hamming Distance: full_soundex",
+			"integral": 2.0,
+			"max": 0.75,
+			"mean": 0.625,
+			"median": 0.75,
+			"min": 0.25,
+			"norm_integral": 0.5,
+			"results": [
+				0.75,
+				0.75,
+				0.75,
+				0.25
+			],
+			"variance": 0.046875
+		},
+		{
+			"algorithm": "Damerau Levenshtein Distance: per_word_nysiis",
+			"integral": 2.0833333333333335,
+			"max": 1.0,
+			"mean": 0.7083333333333334,
+			"median": 0.6666666666666667,
+			"min": 0.5,
+			"norm_integral": 0.5208333333333334,
+			"results": [
+				1.0,
+				0.6666666666666667,
+				0.6666666666666667,
+				0.5
+			],
+			"variance": 0.032986111111111105
+		},
+		{
+			"algorithm": "Levenshtein Distance: per_word_match_rating_codex",
+			"integral": 1.4583333333333335,
+			"max": 0.6666666666666667,
+			"mean": 0.4791666666666667,
+			"median": 0.5,
+			"min": 0.25,
+			"norm_integral": 0.36458333333333337,
+			"results": [
+				0.6666666666666667,
+				0.5,
+				0.5,
+				0.25
+			],
+			"variance": 0.02213541666666667
+		},
+		{
+			"algorithm": "Sequence Matching: per_word_nysiis",
+			"integral": 0.0,
+			"max": 0.0,
+			"mean": 0.0,
+			"median": 0.0,
+			"min": 0.0,
+			"norm_integral": 0.0,
+			"results": [
+				0.0,
+				0.0,
+				0.0,
+				0.0
+			],
+			"variance": 0.0
+		},
+		{
+			"algorithm": "Levenshtein Distance: per_word_nysiis",
+			"integral": 2.0833333333333335,
+			"max": 1.0,
+			"mean": 0.7083333333333334,
+			"median": 0.6666666666666667,
+			"min": 0.5,
+			"norm_integral": 0.5208333333333334,
+			"results": [
+				1.0,
+				0.6666666666666667,
+				0.6666666666666667,
+				0.5
+			],
+			"variance": 0.032986111111111105
+		},
+		{
+			"algorithm": "Sequence Matching: full_soundex",
+			"integral": 0.0,
+			"max": 0.0,
+			"mean": 0.0,
+			"median": 0.0,
+			"min": 0.0,
+			"norm_integral": 0.0,
+			"results": [
+				0.0,
+				0.0,
+				0.0,
+				0.0
+			],
+			"variance": 0.0
+		},
+		{
+			"algorithm": "Dice Coefficient: full_match_rating_codex",
+			"integral": 0.3333333333333333,
+			"max": 0.6666666666666666,
+			"mean": 0.16666666666666666,
+			"median": 0.0,
+			"min": 0.0,
+			"norm_integral": 0.08333333333333333,
+			"results": [
+				0.6666666666666666,
+				0.0,
+				0.0,
+				0.0
+			],
+			"variance": 0.08333333333333334
+		},
+		{
+			"algorithm": "Hamming Distance: full_match_rating_codex",
+			"integral": 1.3333333333333335,
+			"max": 0.6666666666666667,
+			"mean": 0.4166666666666667,
+			"median": 0.5,
+			"min": 0.0,
+			"norm_integral": 0.33333333333333337,
+			"results": [
+				0.6666666666666667,
+				0.5,
+				0.5,
+				0.0
+			],
+			"variance": 0.06250000000000001
+		},
+		{
+			"algorithm": "Levenshtein Distance: per_word_origin",
+			"integral": 1.25,
+			"max": 0.6,
+			"mean": 0.42500000000000004,
+			"median": 0.45,
+			"min": 0.19999999999999996,
+			"norm_integral": 0.3125,
+			"results": [
+				0.5,
+				0.6,
+				0.19999999999999996,
+				0.4
+			],
+			"variance": 0.021875000000000002
+		},
+		{
+			"algorithm": "Levenshtein Distance: full_metaphone",
+			"integral": 2.666666666666667,
+			"max": 1.0,
+			"mean": 0.8333333333333335,
+			"median": 0.8333333333333334,
+			"min": 0.6666666666666667,
+			"norm_integral": 0.6666666666666667,
+			"results": [
+				0.6666666666666667,
+				1.0,
+				1.0,
+				0.6666666666666667
+			],
+			"variance": 0.027777777777777766
+		},
+		{
+			"algorithm": "Sequence Matching: per_word_metaphone",
+			"integral": 0.0,
+			"max": 0.0,
+			"mean": 0.0,
+			"median": 0.0,
+			"min": 0.0,
+			"norm_integral": 0.0,
+			"results": [
+				0.0,
+				0.0,
+				0.0,
+				0.0
+			],
+			"variance": 0.0
+		},
+		{
+			"algorithm": "Sequence Matching: per_word_origin",
+			"integral": 0.0,
+			"max": 0.0,
+			"mean": 0.0,
+			"median": 0.0,
+			"min": 0.0,
+			"norm_integral": 0.0,
+			"results": [
+				0.0,
+				0.0,
+				0.0,
+				0.0
+			],
+			"variance": 0.0
+		},
+		{
+			"algorithm": "Sequence Matching: full_match_rating_codex",
+			"integral": 0.0,
+			"max": 0.0,
+			"mean": 0.0,
+			"median": 0.0,
+			"min": 0.0,
+			"norm_integral": 0.0,
+			"results": [
+				0.0,
+				0.0,
+				0.0,
+				0.0
+			],
+			"variance": 0.0
+		},
+		{
+			"algorithm": "Longest common substring: per_word_soundex",
+			"integral": 2.0,
+			"max": 0.75,
+			"mean": 0.625,
+			"median": 0.625,
+			"min": 0.5,
+			"norm_integral": 0.5,
+			"results": [
+				0.5,
+				0.75,
+				0.75,
+				0.5
+			],
+			"variance": 0.015625
+		},
+		{
+			"algorithm": "Longest common substring: per_word_nysiis",
+			"integral": 2.083333333333333,
+			"max": 1.0,
+			"mean": 0.7083333333333333,
+			"median": 0.6666666666666666,
+			"min": 0.5,
+			"norm_integral": 0.5208333333333333,
+			"results": [
+				1.0,
+				0.6666666666666666,
+				0.6666666666666666,
+				0.5
+			],
+			"variance": 0.03298611111111111
+		},
+		{
+			"algorithm": "Sequence Matching: full_origin",
+			"integral": 0.0,
+			"max": 0.0,
+			"mean": 0.0,
+			"median": 0.0,
+			"min": 0.0,
+			"norm_integral": 0.0,
+			"results": [
+				0.0,
+				0.0,
+				0.0,
+				0.0
+			],
+			"variance": 0.0
+		},
+		{
+			"algorithm": "Levenshtein Distance: per_word_metaphone",
+			"integral": 2.666666666666667,
+			"max": 1.0,
+			"mean": 0.8333333333333335,
+			"median": 0.8333333333333334,
+			"min": 0.6666666666666667,
+			"norm_integral": 0.6666666666666667,
+			"results": [
+				0.6666666666666667,
+				1.0,
+				1.0,
+				0.6666666666666667
+			],
+			"variance": 0.027777777777777766
+		},
+		{
+			"algorithm": "Longest common substring: per_word_match_rating_codex",
+			"integral": 1.4583333333333333,
+			"max": 0.6666666666666666,
+			"mean": 0.47916666666666663,
+			"median": 0.5,
+			"min": 0.25,
+			"norm_integral": 0.3645833333333333,
+			"results": [
+				0.6666666666666666,
+				0.5,
+				0.5,
+				0.25
+			],
+			"variance": 0.02213541666666666
+		},
+		{
+			"algorithm": "Dice Coefficient: per_word_origin",
+			"integral": 0.7023809523809523,
+			"max": 0.5,
+			"mean": 0.27976190476190477,
+			"median": 0.30952380952380953,
+			"min": 0.0,
+			"norm_integral": 0.17559523809523808,
+			"results": [
+				0.5,
+				0.2857142857142857,
+				0.0,
+				0.3333333333333333
+			],
+			"variance": 0.03241921768707483
+		},
+		{
+			"algorithm": "Damerau Levenshtein Distance: per_word_match_rating_codex",
+			"integral": 1.4583333333333335,
+			"max": 0.6666666666666667,
+			"mean": 0.4791666666666667,
+			"median": 0.5,
+			"min": 0.25,
+			"norm_integral": 0.36458333333333337,
+			"results": [
+				0.6666666666666667,
+				0.5,
+				0.5,
+				0.25
+			],
+			"variance": 0.02213541666666667
+		},
+		{
+			"algorithm": "Sequence Matching: per_word_match_rating_codex",
+			"integral": 0.0,
+			"max": 0.0,
+			"mean": 0.0,
+			"median": 0.0,
+			"min": 0.0,
+			"norm_integral": 0.0,
+			"results": [
+				0.0,
+				0.0,
+				0.0,
+				0.0
+			],
+			"variance": 0.0
+		},
+		{
+			"algorithm": "Hamming Distance: per_word_metaphone",
+			"integral": 2.3333333333333335,
+			"max": 1.0,
+			"mean": 0.6666666666666667,
+			"median": 0.8333333333333334,
+			"min": 0.0,
+			"norm_integral": 0.5833333333333334,
+			"results": [
+				0.6666666666666667,
+				1.0,
+				1.0,
+				0.0
+			],
+			"variance": 0.16666666666666666
+		},
+		{
+			"algorithm": "Damerau Levenshtein Distance: per_word_metaphone",
+			"integral": 2.666666666666667,
+			"max": 1.0,
+			"mean": 0.8333333333333335,
+			"median": 0.8333333333333334,
+			"min": 0.6666666666666667,
+			"norm_integral": 0.6666666666666667,
+			"results": [
+				0.6666666666666667,
+				1.0,
+				1.0,
+				0.6666666666666667
+			],
+			"variance": 0.027777777777777766
+		},
+		{
+			"algorithm": "Sequence Matching: full_nysiis",
+			"integral": 0.0,
+			"max": 0.0,
+			"mean": 0.0,
+			"median": 0.0,
+			"min": 0.0,
+			"norm_integral": 0.0,
+			"results": [
+				0.0,
+				0.0,
+				0.0,
+				0.0
+			],
+			"variance": 0.0
+		},
+		{
+			"algorithm": "Dice Coefficient: per_word_metaphone",
+			"integral": 2.6666666666666665,
+			"max": 1.0,
+			"mean": 0.8333333333333333,
+			"median": 0.8333333333333333,
+			"min": 0.6666666666666666,
+			"norm_integral": 0.6666666666666666,
+			"results": [
+				0.6666666666666666,
+				1.0,
+				1.0,
+				0.6666666666666666
+			],
+			"variance": 0.027777777777777783
+		},
+		{
+			"algorithm": "Levenshtein Distance: per_word_soundex",
+			"integral": 2.0,
+			"max": 0.75,
+			"mean": 0.625,
+			"median": 0.75,
+			"min": 0.25,
+			"norm_integral": 0.5,
+			"results": [
+				0.75,
+				0.75,
+				0.75,
+				0.25
+			],
+			"variance": 0.046875
+		},
+		{
+			"algorithm": "Damerau Levenshtein Distance: full_match_rating_codex",
+			"integral": 1.4583333333333335,
+			"max": 0.6666666666666667,
+			"mean": 0.4791666666666667,
+			"median": 0.5,
+			"min": 0.25,
+			"norm_integral": 0.36458333333333337,
+			"results": [
+				0.6666666666666667,
+				0.5,
+				0.5,
+				0.25
+			],
+			"variance": 0.02213541666666667
+		},
+		{
+			"algorithm": "Hamming Distance: full_nysiis",
+			"integral": 1.8333333333333335,
+			"max": 1.0,
+			"mean": 0.5833333333333334,
+			"median": 0.6666666666666667,
+			"min": 0.0,
+			"norm_integral": 0.45833333333333337,
+			"results": [
+				1.0,
+				0.6666666666666667,
+				0.6666666666666667,
+				0.0
+			],
+			"variance": 0.13194444444444445
+		},
+		{
+			"algorithm": "Levenshtein Distance: full_nysiis",
+			"integral": 2.0833333333333335,
+			"max": 1.0,
+			"mean": 0.7083333333333334,
+			"median": 0.6666666666666667,
+			"min": 0.5,
+			"norm_integral": 0.5208333333333334,
+			"results": [
+				1.0,
+				0.6666666666666667,
+				0.6666666666666667,
+				0.5
+			],
+			"variance": 0.032986111111111105
+		},
+		{
+			"algorithm": "Dice Coefficient: full_nysiis",
+			"integral": 1.7,
+			"max": 1.0,
+			"mean": 0.6,
+			"median": 0.5,
+			"min": 0.4,
+			"norm_integral": 0.425,
+			"results": [
+				1.0,
+				0.5,
+				0.5,
+				0.4
+			],
+			"variance": 0.05500000000000001
+		},
+		{
+			"algorithm": "Longest common substring: per_word_origin",
+			"integral": 1.05,
+			"max": 0.5,
+			"mean": 0.375,
+			"median": 0.4,
+			"min": 0.2,
+			"norm_integral": 0.2625,
+			"results": [
+				0.5,
+				0.4,
+				0.2,
+				0.4
+			],
+			"variance": 0.011875
+		},
+		{
+			"algorithm": "Hamming Distance: per_word_origin",
+			"integral": 0.44999999999999996,
+			"max": 0.5,
+			"mean": 0.175,
+			"median": 0.09999999999999998,
+			"min": 0.0,
+			"norm_integral": 0.11249999999999999,
+			"results": [
+				0.5,
+				0.19999999999999996,
+				0.0,
+				0.0
+			],
+			"variance": 0.041874999999999996
+		},
+		{
+			"algorithm": "Levenshtein Distance: full_soundex",
+			"integral": 2.0,
+			"max": 0.75,
+			"mean": 0.625,
+			"median": 0.75,
+			"min": 0.25,
+			"norm_integral": 0.5,
+			"results": [
+				0.75,
+				0.75,
+				0.75,
+				0.25
+			],
+			"variance": 0.046875
+		},
+		{
+			"algorithm": "Longest common substring: full_nysiis",
+			"integral": 2.083333333333333,
+			"max": 1.0,
+			"mean": 0.7083333333333333,
+			"median": 0.6666666666666666,
+			"min": 0.5,
+			"norm_integral": 0.5208333333333333,
+			"results": [
+				1.0,
+				0.6666666666666666,
+				0.6666666666666666,
+				0.5
+			],
+			"variance": 0.03298611111111111
+		},
+		{
+			"algorithm": "Hamming Distance: full_metaphone",
+			"integral": 2.3333333333333335,
+			"max": 1.0,
+			"mean": 0.6666666666666667,
+			"median": 0.8333333333333334,
+			"min": 0.0,
+			"norm_integral": 0.5833333333333334,
+			"results": [
+				0.6666666666666667,
+				1.0,
+				1.0,
+				0.0
+			],
+			"variance": 0.16666666666666666
+		},
+		{
+			"algorithm": "Dice Coefficient: per_word_nysiis",
+			"integral": 1.7,
+			"max": 1.0,
+			"mean": 0.6,
+			"median": 0.5,
+			"min": 0.4,
+			"norm_integral": 0.425,
+			"results": [
+				1.0,
+				0.5,
+				0.5,
+				0.4
+			],
+			"variance": 0.05500000000000001
+		},
+		{
+			"algorithm": "Dice Coefficient: full_soundex",
+			"integral": 1.6666666666666665,
+			"max": 0.6666666666666666,
+			"mean": 0.49999999999999994,
+			"median": 0.5,
+			"min": 0.3333333333333333,
+			"norm_integral": 0.41666666666666663,
+			"results": [
+				0.3333333333333333,
+				0.6666666666666666,
+				0.6666666666666666,
+				0.3333333333333333
+			],
+			"variance": 0.027777777777777776
+		},
+		{
+			"algorithm": "Longest common substring: full_soundex",
+			"integral": 2.0,
+			"max": 0.75,
+			"mean": 0.625,
+			"median": 0.625,
+			"min": 0.5,
+			"norm_integral": 0.5,
+			"results": [
+				0.5,
+				0.75,
+				0.75,
+				0.5
+			],
+			"variance": 0.015625
+		},
+		{
+			"algorithm": "Damerau Levenshtein Distance: full_nysiis",
+			"integral": 2.0833333333333335,
+			"max": 1.0,
+			"mean": 0.7083333333333334,
+			"median": 0.6666666666666667,
+			"min": 0.5,
+			"norm_integral": 0.5208333333333334,
+			"results": [
+				1.0,
+				0.6666666666666667,
+				0.6666666666666667,
+				0.5
+			],
+			"variance": 0.032986111111111105
+		},
+		{
+			"algorithm": "Longest common substring: full_match_rating_codex",
+			"integral": 1.4583333333333333,
+			"max": 0.6666666666666666,
+			"mean": 0.47916666666666663,
+			"median": 0.5,
+			"min": 0.25,
+			"norm_integral": 0.3645833333333333,
+			"results": [
+				0.6666666666666666,
+				0.5,
+				0.5,
+				0.25
+			],
+			"variance": 0.02213541666666666
+		},
+		{
+			"algorithm": "Hamming Distance: per_word_soundex",
+			"integral": 2.0,
+			"max": 0.75,
+			"mean": 0.625,
+			"median": 0.75,
+			"min": 0.25,
+			"norm_integral": 0.5,
+			"results": [
+				0.75,
+				0.75,
+				0.75,
+				0.25
+			],
+			"variance": 0.046875
+		}
+	]
+}

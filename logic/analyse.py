@@ -32,7 +32,8 @@ def analyse_row(data):
     result['variance'] = np.var(np_data)
     return result
 
-def filter_mult(data):
+
+def filter_mult_for_high_values(data):
     """
 
     :param data:
@@ -47,7 +48,7 @@ def filter_mult(data):
     if len(selected_keys) > 10:
         # Streiche von den Verbleibenden Algorithmen alle schlechter als der durchschnitt
         selected_keys = [k for k, v in d2.items() if k in selected_keys and np.mean(v) >= np.mean(data_matrix)]
-    if  len(selected_keys) > 10:
+    if len(selected_keys) > 10:
         # Streiche von den Verbleibenden Algorithmen alle mit einer größeren Standartabweichung als der Durchschnitt
         avg_var = np.mean(np.array(list(map(lambda x: np.var(np.array(x)), list(data.values())))))
         selected_keys = [k for k, v in d2.items() if k in selected_keys and np.var(v) <= avg_var]
@@ -56,8 +57,6 @@ def filter_mult(data):
         d_integral = {k: approx_integral(data[k]) for k in selected_keys}
         selected_keys = [k for k, v in d_integral.items() if v >= np.mean(np.array(list(d_integral.values())))]
     return {k: data[k] for k in selected_keys}
-
-
 
 
 def approx_integral(datum, integral_length=1):

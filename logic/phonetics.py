@@ -10,7 +10,7 @@ def normalizeWord(word):
     :param word:
     :return:
     """
-    return re.sub("[^\w]", "", word.lower()).strip()
+    return re.sub("[^\w]", "", word.upper()).strip()
 
 
 def encPhone(english_word):
@@ -33,9 +33,8 @@ def encPhonePerWord(english_sentence):
     :param english_sentence:
     :return:
     """
-    encoded = {'origin': english_sentence}
     words = list(map(normalizeWord, english_sentence.split()))
-    # print(words)
+    encoded = {'origin': " ".join(words)}
     encoded['metaphone'] = " ".join(map(jellyfish.metaphone, words))
     encoded['soundex'] = " ".join(map(jellyfish.soundex, words))
     encoded['nysiis'] = " ".join(map(jellyfish.nysiis, words))

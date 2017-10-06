@@ -20,7 +20,7 @@ def full_compare(input1, input2):
     for k1, v1 in tmp.items():
         for k2, v2 in v1.items():
             result[k2 + ": " + k1] = v2
-    return result
+    return (result, str1, str2)
 
 
 def mult_full_compare(l1):
@@ -32,6 +32,7 @@ def mult_full_compare(l1):
     combinations = list(zip(l1, l1[1:]))
     tmp = list(map(lambda x: full_compare(x[0], x[1]), combinations))
     result = {}
-    for key in tmp[0].keys():
-        result[key] = list(map(lambda x: x[key], tmp))
-    return result
+    for key in tmp[0][0].keys():
+        result[key] = list(map(lambda x: x[0][key], tmp))
+    encodings = [tmp[0][1]] + list(map(lambda x: x[2], tmp))
+    return (result , encodings)

@@ -74,6 +74,7 @@ def input_single():
         return resp
     return abort(400)
 
+
 @app.route('/submit_single', methods=['POST', 'GET'])
 def single_submission_handle():
     raw_input_data = getAllRequestData()
@@ -82,9 +83,10 @@ def single_submission_handle():
         row_number = raw_input_data.get('row_number')
         token = raw_input_data.get('token')
         if heard and row_number and token:
-            storage.userInputCache.insert_user_entry(getUUID(),token[0],row_number[0],heard[0])
+            storage.userInputCache.insert_user_entry(getUUID(), token[0], row_number[0], heard[0])
             return redirect(url_for('id_page'))
     return abort(400)
+
 
 @app.route('/admin')
 def admin_page():
@@ -98,9 +100,8 @@ def reorder_user_input():
     token = raw_input_data.get("token")
     if token:
         userinput = storage.userInputCache.get_user_entries_by_token(token[0])
-        return render_template('SingleInputJoin.html',userinput=userinput)
+        return render_template('SingleInputJoin.html', userinput=userinput)
     return abort(400)
-
 
 
 @app.route('/createToken')
@@ -108,6 +109,40 @@ def create_token_page():
     token = util.gen_token()
     storage.userInputCache.insert_token(token)
     return render_template('TokenShow.html', hackcss=url_for('static', filename='css/hack.min.css'), token=token)
+
+
+@app.route('/save_data', methods=['POST', 'GET'])
+def save_data():
+    raw_data = getAllRequestData()
+    if raw_data:
+        data = []
+        if raw_data.get('joined_input'):
+            for i, v in enumerate(raw_data.get('userinput[]')):
+                if raw_data['useable[]'][i] == "on":
+                    data.append({'no': int(raw_data['inputno[]'][i]), 'word': v})
+            data = sorted(data, key=lambda x: x['no'])
+            data = list(map(lambda x: x['word'], data))
+            data = raw_data.get('original') + data
+        elif raw_data.get('total_input'):
+            data = raw_data['whispers'][0].split("\n")
+        data = list(filter(lambda x: x, map(lambda x: x.strip(), data)))
+        d_id = util.unique_prefix()
+        with open(path.join(path.join(data_root, "input"), d_id + ".json"), "w") as writer:
+            json.dump(data, writer)
+        results = compare.mult_full_compare(data)
+        combined_results=[]
+        for k, v in results[0].items():
+                stat_data=analyse.analyse_row(v)
+                stat_data.update({'algorithm': k, 'results': v})
+                combined_results.append(stat_data)
+        filtered_data = results[0]
+        while len(filtered_data) > 10:
+            filtered_data = analyse.filter_mult_for_high_values(filtered_data)
+        results = {'results': combined_results, 'encoding': results[1] , 'high_value_algorithms':list(filtered_data.keys())}
+        with open(path.join(path.join(data_root, "results"), d_id + ".json"), "w") as writer:
+            json.dump(results, writer, indent="\t",sort_keys=True)
+        return d_id
+    return abort(400)
 
 
 # noinspection PyPep8Naming
@@ -124,14 +159,13 @@ def result():
         with open(path.join(data_root, util.unique_prefix() + ".json"), "w") as writer:
             json.dump(input_data, writer)
         results = compare.mult_full_compare(input_data)
-        filtered_data = results
+        filtered_data = results[0]
         while len(filtered_data) > 10:
-            filtered_data = analyse.filter_mult(filtered_data)
+            filtered_data = analyse.filter_mult_for_high_values(filtered_data)
         if not len(filtered_data):
-            filtered_data = results
+            filtered_data = results[0]
         processedData = []
         for k, v in filtered_data.items():
-            # for k, v in results.items():
             row = {'label': k, 'data': list(map(lambda x: round(x, 3), v))}
             row.update({k1: round(v1, 3) for k1, v1 in analyse.analyse_row(v).items()})
             processedData.append(row)
