@@ -12,6 +12,8 @@ import util
 path_root = path.dirname(path.abspath(__file__))
 template_root = path.join(path_root, "templates")
 data_root = path.join(path_root, "data")
+input_storage = path.join(data_root, "input")
+data_storage = path.join(data_root, "results")
 app = Flask(__name__)
 storage.userInputCache.create_DB(app.debug)
 
@@ -127,21 +129,22 @@ def save_data():
             data = raw_data['whispers'][0].split("\n")
         data = list(filter(lambda x: x, map(lambda x: x.strip(), data)))
         d_id = util.unique_prefix()
-        with open(path.join(path.join(data_root, "input"), d_id + ".json"), "w") as writer:
+        with open(path.join(input_storage, d_id + ".json"), "w") as writer:
             json.dump(data, writer)
         results = compare.mult_full_compare(data)
-        combined_results=[]
+        combined_results = []
         for k, v in results[0].items():
-                stat_data=analyse.analyse_row(v)
-                stat_data.update({'algorithm': k, 'results': v})
-                combined_results.append(stat_data)
+            stat_data = analyse.analyse_row(v)
+            stat_data.update({'algorithm': k, 'results': v})
+            combined_results.append(stat_data)
         filtered_data = results[0]
         while len(filtered_data) > 10:
             filtered_data = analyse.filter_mult_for_high_values(filtered_data)
-        results = {'results': combined_results, 'encoding': results[1] , 'high_value_algorithms':list(filtered_data.keys())}
-        with open(path.join(path.join(data_root, "results"), d_id + ".json"), "w") as writer:
-            json.dump(results, writer, indent="\t",sort_keys=True)
-        return d_id
+        results = {'results': combined_results, 'encoding': results[1],
+                   'high_value_algorithms': list(filtered_data.keys()), 'src': data}
+        with open(path.join(data_storage, d_id + ".json"), "w") as writer:
+            json.dump(results, writer, indent="\t", sort_keys=True)
+        return render_template('SaveSuccess.html', data_id=d_id)
     return abort(400)
 
 
@@ -154,29 +157,27 @@ def result():
     """
     raw_input_data = getAllRequestData()
     if raw_input_data:
-        input_data = raw_input_data['whispers'][0].split("\n")
-        input_data = list(filter(lambda x: x, map(lambda x: x.strip(), input_data)))
-        with open(path.join(data_root, util.unique_prefix() + ".json"), "w") as writer:
-            json.dump(input_data, writer)
-        results = compare.mult_full_compare(input_data)
-        filtered_data = results[0]
-        while len(filtered_data) > 10:
-            filtered_data = analyse.filter_mult_for_high_values(filtered_data)
-        if not len(filtered_data):
-            filtered_data = results[0]
-        processedData = []
-        for k, v in filtered_data.items():
-            row = {'label': k, 'data': list(map(lambda x: round(x, 3), v))}
-            row.update({k1: round(v1, 3) for k1, v1 in analyse.analyse_row(v).items()})
-            processedData.append(row)
-        max_var = max(map(lambda x: x['variance'], processedData))
-        max_integral = max(map(lambda x: x['norm_integral'], processedData))
-        return render_template('ResultView.html', data=processedData,
-                               chartjs=(url_for('static', filename='js/Chart.bundle.min.js')),
-                               palettejs=(url_for('static', filename='js/palette.min.js')),
-                               labels=input_data,
-                               max_var=max_var,
-                               max_integral=max_integral)
+        d_id = raw_input_data.get('data_id')
+        if d_id:
+            data = json.load(open(path.join(data_storage, d_id[0] + ".json")))
+            displayed_data = data['results']
+            if data.get('high_value_algorithms'):
+                displayed_data = list(
+                    filter(lambda x: x['algorithm'] in data.get('high_value_algorithms'), displayed_data))
+            for i, row in enumerate(displayed_data[:]):
+                new_row = row
+                new_row['label'] = row['algorithm']
+                new_row['data'] = row['results']
+                displayed_data[i] = new_row
+            max_var = max(map(lambda x: x['variance'], displayed_data))
+            max_integral = max(map(lambda x: x['norm_integral'], displayed_data))
+            return render_template('ResultView.html', data=displayed_data,
+                                   chartjs=(url_for('static', filename='js/Chart.bundle.min.js')),
+                                   palettejs=(url_for('static', filename='js/palette.min.js')),
+                                   labels=data['src'],
+                                   max_var=max_var,
+                                   max_integral=max_integral)
+    return abort(400)
 
 
 if __name__ == '__main__':

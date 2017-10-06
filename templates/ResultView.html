@@ -9,7 +9,16 @@
     <script src="{{ palettejs }}"></script>
     {% endif %}
 </head>
-<body style="text-align: center">
+<style type="text/css">
+    body{
+        text-align: center;
+    }
+    table {
+        margin-left: auto;
+        margin-right: auto
+    }
+</style>
+<body>
 {% if data %}
 <h1>Results</h1>
 <div style="width:100%;">
@@ -23,7 +32,7 @@
     <tr>
         <th>  {{ line.label }}  </th>
         {% for cell in line.data %}
-        <td>{{ cell }}</td>
+        <td>{{ cell|round(4) }}</td>
         {% endfor %}
     </tr>
     {% endfor %}
@@ -48,12 +57,12 @@
         {% for line in data %}
     <tr>
         <th>  {{ line.label }}  </th>
-        <td> {{ line.min }}</td>
-        <td> {{ line.max }}</td>
-        <td> {{ line.mean }}</td>
-        <td> {{ line.median }}</td>
-        <td> {{ line.variance }}</td>
-        <td> {{ line.integral }}</td>
+        <td> {{ line.min|round(4) }}</td>
+        <td> {{ line.max|round(4) }}</td>
+        <td> {{ line.mean|round(4) }}</td>
+        <td> {{ line.median|round(4) }}</td>
+        <td> {{ line.variance|round(6) }}</td>
+        <td> {{ line.integral|round(4) }}</td>
     </tr>
     {% endfor %}
 </table>
