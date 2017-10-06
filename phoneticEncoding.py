@@ -4,10 +4,10 @@ from os import path, listdir
 
 from flask import Flask, request, render_template, url_for, abort, make_response, redirect
 
-import analyse
-import compare
+import logic.analyse as analyse
+import logic.compare as compare
 import storage.userInputCache
-import util
+import logic.util as util
 
 path_root = path.dirname(path.abspath(__file__))
 template_root = path.join(path_root, "templates")
@@ -43,7 +43,8 @@ def id_page():
     resp.set_cookie('UUID', uuid)
     return resp
 
-
+@app.route('/index')
+@app.route('/home')
 @app.route('/')
 def index_page():
     """
@@ -185,4 +186,4 @@ def result_overview():
     data = list(map(lambda x:".".join(x.split(".")[:-1]),data))
     return render_template("PreviousRuns.html",data=data)
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0')
