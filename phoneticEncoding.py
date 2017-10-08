@@ -6,8 +6,8 @@ from flask import Flask, request, render_template, url_for, abort, make_response
 
 import logic.analyse as analyse
 import logic.compare as compare
-import storage.userInputCache
 import logic.util as util
+import storage.userInputCache
 
 path_root = path.dirname(path.abspath(__file__))
 template_root = path.join(path_root, "templates")
@@ -160,24 +160,26 @@ def result():
     if raw_input_data:
         d_id = raw_input_data.get('data_id')
         if d_id:
-            data = json.load(open(path.join(data_storage, d_id[0] + ".json")))
-            displayed_data = data['results']
-            if data.get('high_value_algorithms'):
-                displayed_data = list(
-                    filter(lambda x: x['algorithm'] in data.get('high_value_algorithms'), displayed_data))
-            for i, row in enumerate(displayed_data[:]):
-                new_row = row
-                new_row['label'] = row['algorithm']
-                new_row['data'] = row['results']
-                displayed_data[i] = new_row
-            max_var = max(map(lambda x: x['variance'], displayed_data))
-            max_integral = max(map(lambda x: x['norm_integral'], displayed_data))
-            return render_template('ResultView.html', data=displayed_data,
-                                   chartjs=(url_for('static', filename='js/Chart.bundle.min.js')),
-                                   palettejs=(url_for('static', filename='js/palette.min.js')),
-                                   labels=data['src'],
-                                   max_var=max_var,
-                                   max_integral=max_integral)
+            d_id=d_id[0] + ".json"
+            if d_id in listdir(data_storage):
+                data = json.load(open(path.join(data_storage, d_id)))
+                displayed_data = data['results']
+                if data.get('high_value_algorithms'):
+                    displayed_data = list(
+                        filter(lambda x: x['algorithm'] in data.get('high_value_algorithms'), displayed_data))
+                for i, row in enumerate(displayed_data[:]):
+                    new_row = row
+                    new_row['label'] = row['algorithm']
+                    new_row['data'] = row['results']
+                    displayed_data[i] = new_row
+                max_var = max(map(lambda x: x['variance'], displayed_data))
+                max_integral = max(map(lambda x: x['norm_integral'], displayed_data))
+                return render_template('ResultView.html', data=displayed_data,
+                                       chartjs=(url_for('static', filename='js/Chart.bundle.min.js')),
+                                       palettejs=(url_for('static', filename='js/palette.min.js')),
+                                       labels=data['src'],
+                                       max_var=max_var,
+                                       max_integral=max_integral)
     return abort(400)
 
 @app.route('/result_overview')
