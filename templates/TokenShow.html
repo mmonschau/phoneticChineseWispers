@@ -11,5 +11,8 @@
 <body style="text-align: center;font-family: Hack, monospace;font-size: xx-large">
 {% endif %}
 <h1>{{ token }}</h1>
+{% if hostname %}
+<h2><a href="http://{{hostname}}">{{hostname}}</a></h2>
+{% endif %}
 </body>
 </html>

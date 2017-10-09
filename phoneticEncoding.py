@@ -113,7 +113,8 @@ def reorder_user_input():
 def create_token_page():
     token = util.gen_token()
     storage.userInputCache.insert_token(token)
-    return render_template('TokenShow.html', hackcss=url_for('static', filename='css/hack.min.css'), token=token)
+    return render_template('TokenShow.html', hackcss=url_for('static', filename='css/hack.min.css'), token=token,
+                           hostname=str(request.host))
 
 
 @app.route('/save_data', methods=['POST', 'GET'])
@@ -199,7 +200,7 @@ def phonetic_demo():
         unencoded_str = raw_input_data.get("unencoded")
         if unencoded_str:
             phonetic = phonetics.encPhoneVariants(unencoded_str[0])
-            return render_template("PhoneticDemo.html", phonetic=phonetic,unencoded=unencoded_str[0].strip())
+            return render_template("PhoneticDemo.html", phonetic=phonetic, unencoded=unencoded_str[0].strip())
     return render_template("PhoneticDemo.html")
 
 
