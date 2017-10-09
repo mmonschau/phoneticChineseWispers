@@ -7,6 +7,7 @@ from flask import Flask, request, render_template, url_for, abort, make_response
 import logic.analyse as analyse
 import logic.compare as compare
 import logic.util as util
+import phonetics
 import storage.userInputCache
 
 path_root = path.dirname(path.abspath(__file__))
@@ -42,6 +43,7 @@ def id_page():
                         fontsize="large"))
     resp.set_cookie('UUID', uuid)
     return resp
+
 
 @app.route('/index')
 @app.route('/home')
@@ -160,7 +162,7 @@ def result():
     if raw_input_data:
         d_id = raw_input_data.get('data_id')
         if d_id:
-            d_id=d_id[0] + ".json"
+            d_id = d_id[0] + ".json"
             if d_id in listdir(data_storage):
                 data = json.load(open(path.join(data_storage, d_id)))
                 displayed_data = data['results']
@@ -182,10 +184,24 @@ def result():
                                        max_integral=max_integral)
     return abort(400)
 
+
 @app.route('/result_overview')
 def result_overview():
     data = listdir(data_storage)
-    data = list(map(lambda x:".".join(x.split(".")[:-1]),data))
-    return render_template("PreviousRuns.html",data=data)
+    data = list(map(lambda x: ".".join(x.split(".")[:-1]), data))
+    return render_template("PreviousRuns.html", data=data)
+
+
+@app.route('/phon_demo')
+def phonetic_demo():
+    raw_input_data = getAllRequestData()
+    if raw_input_data:
+        unencoded_str = raw_input_data.get("unencoded")
+        if unencoded_str:
+            phonetic = phonetics.encPhoneVariants(unencoded_str[0])
+            return render_template("PhoneticDemo.html", phonetic=phonetic)
+    return render_template("PhoneticDemo.html")
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

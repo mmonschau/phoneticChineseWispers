@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phonetic Encoding demo</title>
+</head>
+<style type="text/css">
+    body{
+        text-align: center;
+    }
+    table {
+        margin-left: auto;
+        margin-right: auto
+    }
+</style>
+<body>
+<form action="phon_demo" method="get">
+    <textarea cols="60" rows="3" name="unencoded"></textarea><br/>
+    <input type="submit">
+</form>
+{% if phonetic %}
+<table>
+        {% for key, value in phonetic.items() %}
+            <tr>
+                <th>{{ key }}</th>
+                <td>{{ value }}</td>
+            </tr>
+        {% endfor %}
+</table>
+{% endif %}
+</body>
+</html>
