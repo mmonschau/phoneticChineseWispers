@@ -6,8 +6,8 @@ from flask import Flask, request, render_template, url_for, abort, make_response
 
 import logic.analyse as analyse
 import logic.compare as compare
-import logic.util as util
 import logic.phonetics as phonetics
+import logic.util as util
 import storage.userInputCache
 
 path_root = path.dirname(path.abspath(__file__))
@@ -199,7 +199,7 @@ def phonetic_demo():
         unencoded_str = raw_input_data.get("unencoded")
         if unencoded_str:
             phonetic = phonetics.encPhoneVariants(unencoded_str[0])
-            return render_template("PhoneticDemo.html", phonetic=phonetic)
+            return render_template("PhoneticDemo.html", phonetic=phonetic,unencoded=unencoded_str[0].strip())
     return render_template("PhoneticDemo.html")
 
 

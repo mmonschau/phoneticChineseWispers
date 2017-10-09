@@ -13,7 +13,7 @@ import logic.statistical.sequence
 distance_metrics = {
     # "Bag Distance": bag_distance.calc_similarity,
     "Damerau Levenshtein Distance": damerau_levenshtein.calc_similarity,
-    "Dice Coefficient": dice_coefficient.calc_similarity,
+    #"Dice Coefficient": dice_coefficient.calc_similarity,
     "Hamming Distance": hamming.calc_similarity,
     # "Jaccard Index": jaccard.calc_similarity,
     "Jaro Distance": jaro.calc_similarity,
