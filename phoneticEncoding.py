@@ -123,9 +123,10 @@ def save_data():
     if raw_data:
         data = []
         if raw_data.get('joined_input'):
-            for i, v in enumerate(raw_data.get('userinput[]')):
-                if raw_data['useable[]'][i] == "on":
-                    data.append({'no': int(raw_data['inputno[]'][i]), 'word': v})
+            print(raw_data)
+            for i, v in enumerate(raw_data.get('userinput')):
+                if raw_data['useable'][i] == "on":
+                    data.append({'no': int(raw_data['inputno'][i]), 'word': v})
             data = sorted(data, key=lambda x: x['no'])
             data = list(map(lambda x: x['word'], data))
             data = raw_data.get('original') + data
