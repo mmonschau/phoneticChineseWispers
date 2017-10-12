@@ -1,7 +1,8 @@
 Copyright (c) 2017 Michael Monschau
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software") for non-commercial, private use.
+of this software and associated documentation files (the "Software") for 
+non-commercial, private use.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -10,3 +11,10 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+This Software also contains chart.js, palette.js and Hack font, which are 
+located in the "static" folder. Those components are Licensed as follows:
+- Hack Font: Hack Open Font License v2.0 and the Bitstream Vera License
+    https://github.com/source-foundry/Hack/blob/master/LICENSE.md
+- Chart.js:MIT-License: https://github.com/chartjs/Chart.js/blob/master/LICENSE.md
+- Google palette.js: https://github.com/google/palette.js/blob/master/LICENSE
