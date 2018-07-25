@@ -2,7 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Token show page</title>
+    <title>
+        {% if title %}
+            {{title}}
+        {% else %}
+        Token show page
+        {% endif %}
+    </title>
     <link rel="stylesheet" href="{{ hackcss }}">
 </head>
 {% if fontsize %}

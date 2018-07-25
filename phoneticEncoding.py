@@ -2,7 +2,7 @@
 import json
 from os import path, listdir
 
-from flask import Flask, request, render_template, url_for, abort, make_response, redirect
+from flask import Flask, request, render_template, url_for, abort, make_response
 
 import logic.analyse as analyse
 import logic.compare as compare
@@ -40,7 +40,7 @@ def id_page():
     uuid = getUUID()
     resp = make_response(
         render_template('TokenShow.html', hackcss=url_for('static', filename='css/hack.min.css'), token=uuid,
-                        fontsize="large"))
+                        fontsize="large",title="ID Page"))
     resp.set_cookie('UUID', uuid)
     return resp
 
@@ -89,7 +89,8 @@ def single_submission_handle():
         token = raw_input_data.get('token')
         if heard and row_number and token:
             storage.userInputCache.insert_user_entry(getUUID(), token[0], row_number[0], heard[0])
-            return redirect(url_for('id_page'))
+            return render_template('TokenShow.html', hackcss=url_for('static', filename='css/hack.min.css'), token="Your input was saved!",
+                        fontsize="large",title="Input saved")
     return abort(400)
 
 
