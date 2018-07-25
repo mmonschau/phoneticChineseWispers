@@ -140,21 +140,25 @@ def save_data():
         d_id = util.unique_prefix()
         with open(path.join(input_storage, d_id + ".json"), "w") as writer:
             json.dump(data, writer)
-        results = compare.mult_full_compare(data)
-        combined_results = []
-        for k, v in results[0].items():
-            stat_data = analyse.analyse_row(v)
-            stat_data.update({'algorithm': k, 'results': v})
-            combined_results.append(stat_data)
-        filtered_data = results[0]
-        while len(filtered_data) > 10:
-            filtered_data = analyse.filter_mult_for_high_values(filtered_data)
-        results = {'results': combined_results, 'encoding': results[1],
-                   'high_value_algorithms': list(filtered_data.keys()), 'src': data}
-        with open(path.join(data_storage, d_id + ".json"), "w") as writer:
-            json.dump(results, writer, indent="\t", sort_keys=True)
+        calculate_results_from_data(data, d_id)
         return render_template('SaveSuccess.html', data_id=d_id)
     return abort(400)
+
+
+def calculate_results_from_data(data, d_id):
+    results = compare.mult_full_compare(data)
+    combined_results = []
+    for k, v in results[0].items():
+        stat_data = analyse.analyse_row(v)
+        stat_data.update({'algorithm': k, 'results': v})
+        combined_results.append(stat_data)
+    filtered_data = results[0]
+    while len(filtered_data) > 10:
+        filtered_data = analyse.filter_mult_for_high_values(filtered_data)
+    results = {'results': combined_results, 'encoding': results[1],
+               'high_value_algorithms': list(filtered_data.keys()), 'src': data}
+    with open(path.join(data_storage, d_id + ".json"), "w") as writer:
+        json.dump(results, writer, indent="\t", sort_keys=True)
 
 
 # noinspection PyPep8Naming
@@ -210,10 +214,9 @@ def phonetic_demo():
 
 
 def check_access_permission():
-    print(request.host)
-    if not str(request.host).split(":")[0] in ["0.0.0.0","127.0.0.1","localhost"]:
+    #print(request.host)
+    if not str(request.host).split(":")[0] in ["0.0.0.0", "127.0.0.1", "localhost"]:
         return abort(400)
-
 
 
 if __name__ == '__main__':
