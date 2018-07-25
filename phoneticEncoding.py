@@ -95,12 +95,14 @@ def single_submission_handle():
 
 @app.route('/admin')
 def admin_page():
+    check_access_permission()
     tokens = storage.userInputCache.get_tokens()
     return render_template('admin.html', tokens=tokens)
 
 
 @app.route('/organizeInput', methods=['POST', 'GET'])
 def reorder_user_input():
+    check_access_permission()
     raw_input_data = getAllRequestData()
     token = raw_input_data.get("token")
     if token:
@@ -111,6 +113,7 @@ def reorder_user_input():
 
 @app.route('/createToken')
 def create_token_page():
+    check_access_permission()
     token = util.gen_token()
     storage.userInputCache.insert_token(token)
     return render_template('TokenShow.html', hackcss=url_for('static', filename='css/hack.min.css'), token=token,
@@ -119,6 +122,7 @@ def create_token_page():
 
 @app.route('/save_data', methods=['POST', 'GET'])
 def save_data():
+    check_access_permission()
     raw_data = getAllRequestData()
     if raw_data:
         data = []
@@ -203,6 +207,13 @@ def phonetic_demo():
             phonetic = phonetics.encPhoneVariants(unencoded_str[0])
             return render_template("PhoneticDemo.html", phonetic=phonetic, unencoded=unencoded_str[0].strip())
     return render_template("PhoneticDemo.html")
+
+
+def check_access_permission():
+    print(request.host)
+    if not str(request.host).split(":")[0] in ["0.0.0.0","127.0.0.1","localhost"]:
+        return abort(400)
+
 
 
 if __name__ == '__main__':
