@@ -15,9 +15,9 @@ def create_DB(debug=False):
             conn = sql.connect(':memory:', check_same_thread=False)
         cursor = conn.cursor()
         cursor.execute(
-            "CREATE TABLE IF NOT EXISTS `userinput` (`ID`	INTEGER PRIMARY KEY AUTOINCREMENT,	`token`	TEXT NOT NULL,	`number`	INTEGER NOT NULL, `uuid` TEXT NOT NULL ,	`input`	TEXT NOT NULL);")
+            "CREATE TABLE IF NOT EXISTS `userinput` (`ID`	INTEGER PRIMARY KEY AUTOINCREMENT,	`token`	TEXT NOT NULL,	`number`	INTEGER NOT NULL, `uuid` TEXT NOT NULL ,	`input`	TEXT NOT NULL, `timestamp` TIMESTAMP DEFAULT CURRENT_TIMESTAMP);")
         cursor.execute(
-            "CREATE TABLE IF NOT EXISTS `tokens` (	`ID`	INTEGER PRIMARY KEY AUTOINCREMENT,	`token`	TEXT UNIQUE);")
+            "CREATE TABLE IF NOT EXISTS `tokens` (	`ID`	INTEGER PRIMARY KEY AUTOINCREMENT,	`token`	TEXT UNIQUE, `timestamp` TIMESTAMP DEFAULT CURRENT_TIMESTAMP);")
         conn.commit()
         conn.row_factory = sql.Row
         __DBCON__ = conn
@@ -32,14 +32,17 @@ def insert_token(token):
 def get_tokens():
     conn = __DBCON__
     cursor = conn.cursor()
-    cursor.execute("SELECT token FROM tokens")
+    cursor.execute("SELECT token, `timestamp` FROM tokens")
     tokens = cursor.fetchall()
-    return list(map(lambda x: x[0], tokens))
+    tokens = list(map(lambda x: dict(x),tokens))#convert to list
+    #print(tokens)
+    #return list(map(lambda x: x['token'], tokens))
+    return tokens
 
 
 def insert_user_entry(uuid, token, row_number, user_input):
     __DBCON__.execute("INSERT INTO userinput(uuid, token,number,input) VALUES(:uuid, :token,:number,:input)",
-                      {'uuid':uuid,'token': token, 'number': row_number, 'input': user_input})
+                      {'uuid': uuid, 'token': token, 'number': row_number, 'input': user_input})
     __DBCON__.commit()
 
 

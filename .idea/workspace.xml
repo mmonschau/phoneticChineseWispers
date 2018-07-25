@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="01df601c-dd79-488e-8d0a-778eb6d624d4" name="Default" comment="Added permission check for admin pages">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="01df601c-dd79-488e-8d0a-778eb6d624d4" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/phoneticEncoding.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/phoneticEncoding.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/phoneticEncoding.py" beforeDir="false" afterPath="$PROJECT_DIR$/phoneticEncoding.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/storage/userInputCache.py" beforeDir="false" afterPath="$PROJECT_DIR$/storage/userInputCache.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/InputView.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/InputView.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,7 +18,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/phoneticEncoding$phoneticEncoding.coverage" NAME="phoneticEncoding Coverage Results" MODIFIED="1532530675355" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/phoneticEncoding$phoneticEncoding.coverage" NAME="phoneticEncoding Coverage Results" MODIFIED="1532533948215" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -30,20 +33,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="phoneticEncoding.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/phoneticEncoding.py">
+      <file leaf-file-name="userInputCache.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/storage/userInputCache.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="277">
-              <caret line="216" column="4" selection-start-line="216" selection-start-column="4" selection-end-line="216" selection-end-column="4" />
+            <state relative-caret-position="233">
+              <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="userInputCache.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/storage/userInputCache.py">
+      <file leaf-file-name="phoneticEncoding.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/phoneticEncoding.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-148">
-              <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
+            <state relative-caret-position="383">
+              <caret line="217" column="41" selection-start-line="217" selection-start-column="41" selection-end-line="217" selection-end-column="41" />
+              <folding>
+                <element signature="e#15#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/admin.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="15" column="68" selection-start-line="15" selection-start-column="68" selection-end-line="15" selection-end-column="68" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SingleInputJoin.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/SingleInputJoin.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="349">
+              <caret line="28" column="34" lean-forward="true" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -105,14 +129,11 @@
         <option value="$PROJECT_DIR$/templates/Input.html" />
         <option value="$PROJECT_DIR$/logic/chartExport.py" />
         <option value="$PROJECT_DIR$/db/DBAL.py" />
-        <option value="$PROJECT_DIR$/templates/admin.html" />
         <option value="$PROJECT_DIR$/templates/Token Show.html" />
-        <option value="$PROJECT_DIR$/storage/userInputCache.py" />
         <option value="$PROJECT_DIR$/templates/SingleInputJoin.html" />
         <option value="$PROJECT_DIR$/logic/compare.py" />
         <option value="$PROJECT_DIR$/logic/phonetics.py" />
         <option value="$PROJECT_DIR$/logic/analyse.py" />
-        <option value="$PROJECT_DIR$/templates/InputView.html" />
         <option value="$PROJECT_DIR$/templates/ResultView.html" />
         <option value="$PROJECT_DIR$/templates/PreviousRuns.html" />
         <option value="$PROJECT_DIR$/templates/SaveSuccess.html" />
@@ -124,7 +145,10 @@
         <option value="$PROJECT_DIR$/templates/PhoneticDemo.html" />
         <option value="$PROJECT_DIR$/templates/TokenShow.html" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/templates/InputView.html" />
         <option value="$PROJECT_DIR$/phoneticEncoding.py" />
+        <option value="$PROJECT_DIR$/storage/userInputCache.py" />
+        <option value="$PROJECT_DIR$/templates/admin.html" />
       </list>
     </option>
   </component>
@@ -186,6 +210,21 @@
               <item name="phoneticEncoding" type="b2602c69:ProjectViewProjectNode" />
               <item name="phoneticEncoding" type="462c0819:PsiDirectoryNode" />
               <item name="logic" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="phoneticEncoding" type="b2602c69:ProjectViewProjectNode" />
+              <item name="phoneticEncoding" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="phoneticEncoding" type="b2602c69:ProjectViewProjectNode" />
+              <item name="phoneticEncoding" type="462c0819:PsiDirectoryNode" />
+              <item name="storage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="phoneticEncoding" type="b2602c69:ProjectViewProjectNode" />
+              <item name="phoneticEncoding" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -407,7 +446,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507563959980</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Added permission check for admin pages">
+      <created>1532530999021</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1532530999021</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TodoView">
@@ -425,16 +471,17 @@
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3280363" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="right" x="0" y="0" width="271" height="572" id="Documentation" sideWeight="0.5023585" side_tool="true" weight="0.32956383" />
       <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.3198128" />
-      <window_info anchor="bottom" id="Python Console" order="7" weight="0.33878157" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.2765625" />
+      <window_info anchor="bottom" id="Python Console" order="7" weight="0.3375" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.2765625" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32392272" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2552504" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4984375" visible="true" weight="0.2552504" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" weight="0.32956383" />
-      <window_info anchor="right" id="SciView" weight="0.32956383" />
-      <window_info id="Structure" order="2" side_tool="true" weight="0.24959612" />
+      <window_info anchor="right" id="SciView" sideWeight="0.4976415" weight="0.32956383" />
+      <window_info id="Structure" order="2" sideWeight="0.5015625" side_tool="true" visible="true" weight="0.2552504" />
       <window_info id="Favorites" order="1" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -472,7 +519,8 @@
     <MESSAGE value="Added Page for Phonetic Encoding demonstration" />
     <MESSAGE value="Fixed Phonetic Encoding demonstration page showing original term" />
     <MESSAGE value="added landing-page url to token page" />
-    <option name="LAST_COMMIT_MESSAGE" value="added landing-page url to token page" />
+    <MESSAGE value="Added permission check for admin pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added permission check for admin pages" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -531,13 +579,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/logic/analyse.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-272">
-          <caret line="37" lean-forward="true" selection-start-line="37" selection-end-line="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/results/01e0Qq0_01GnPY8_06TU_04Xb_0ADH_07L81Xc5I.json" />
     <entry file="file://$PROJECT_DIR$/data/results/01e0R0t_0BvIXk_0EEU_04Rv_09ah_075nSWmnR.json" />
     <entry file="file://$PROJECT_DIR$/data/input/01e0R24_027QhRR_01o9_04GN_0ALY_017uUEi9PX.json" />
@@ -561,52 +602,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/admin.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/InputView.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="6" lean-forward="true" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/SingleInputJoin.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="14" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/InputSingle.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="13" column="56" selection-start-line="13" selection-start-column="56" selection-end-line="13" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/ResultView.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="17" lean-forward="true" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/SaveSuccess.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/PreviousRuns.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -652,13 +651,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/storage/userInputCache.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-148">
-          <caret line="25" lean-forward="true" selection-start-line="25" selection-end-line="25" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/PhoneticDemo.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="274">
@@ -669,10 +661,69 @@
     <entry file="file://$PROJECT_DIR$/storage/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/logic/analyse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="332">
+          <caret line="58" column="46" lean-forward="true" selection-start-line="58" selection-start-column="46" selection-end-line="58" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/PreviousRuns.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="5" lean-forward="true" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/ResultView.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="17" lean-forward="true" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/InputView.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="48" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/SaveSuccess.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="25" selection-start-line="10" selection-start-column="25" selection-end-line="10" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/SingleInputJoin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="28" column="34" lean-forward="true" selection-start-line="28" selection-start-column="34" selection-end-line="28" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/admin.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" column="68" selection-start-line="15" selection-start-column="68" selection-end-line="15" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/phoneticEncoding.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="216" column="4" selection-start-line="216" selection-start-column="4" selection-end-line="216" selection-end-column="4" />
+        <state relative-caret-position="383">
+          <caret line="217" column="41" selection-start-line="217" selection-start-column="41" selection-end-line="217" selection-end-column="41" />
+          <folding>
+            <element signature="e#15#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storage/userInputCache.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="233">
+          <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
         </state>
       </provider>
     </entry>

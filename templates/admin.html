@@ -13,7 +13,7 @@
 <form action="organizeInput">
     <select name="token">
         {% for t in tokens %}
-            <option value="{{ t }}">{{t}}</option>
+            <option value="{{ t.token }}">{{t.token}} ({{t.timestamp}})</option>
         {% endfor %}
     </select>
     <input type="submit"/>
