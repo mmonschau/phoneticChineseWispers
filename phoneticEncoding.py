@@ -23,6 +23,7 @@ storage.userInputCache.create_DB(app.debug)
 def getAllRequestData():
     result = dict(request.args)
     result.update(dict(request.form))
+    print(result)
     return result
 
 
@@ -40,7 +41,7 @@ def id_page():
     uuid = getUUID()
     resp = make_response(
         render_template('TokenShow.html', hackcss=url_for('static', filename='css/hack.min.css'), token=uuid,
-                        fontsize="large",title="ID Page"))
+                        fontsize="large", title="ID Page"))
     resp.set_cookie('UUID', uuid)
     return resp
 
@@ -89,8 +90,9 @@ def single_submission_handle():
         token = raw_input_data.get('token')
         if heard and row_number and token:
             storage.userInputCache.insert_user_entry(getUUID(), token[0], row_number[0], heard[0])
-            return render_template('TokenShow.html', hackcss=url_for('static', filename='css/hack.min.css'), token="Your input was saved!",
-                        fontsize="large",title="Input saved")
+            return render_template('TokenShow.html', hackcss=url_for('static', filename='css/hack.min.css'),
+                                   token="Your input was saved!",
+                                   fontsize="large", title="Input saved")
     return abort(400)
 
 
@@ -140,10 +142,20 @@ def save_data():
         data = list(filter(lambda x: x, map(lambda x: x.strip(), data)))
         d_id = util.unique_prefix()
         with open(path.join(input_storage, d_id + ".json"), "w") as writer:
-            json.dump(data, writer)
+            json.dump(data, writer, indent=2)
         calculate_results_from_data(data, d_id)
         return render_template('SaveSuccess.html', data_id=d_id)
     return abort(400)
+
+
+@app.route('/regen')
+def generate_all_results():
+    for f in listdir(input_storage):
+        d_id = f.split(".")[0]
+        d = json.load(open(path.join(input_storage, f), "r"))
+        print(d)
+        calculate_results_from_data(d, d_id)
+    return "created results from raw data."
 
 
 def calculate_results_from_data(data, d_id):
@@ -172,14 +184,17 @@ def result():
     raw_input_data = getAllRequestData()
     if raw_input_data:
         d_id = raw_input_data.get('data_id')
+        print(d_id)
         if d_id:
-            d_id = d_id[0] + ".json"
+            d_id = d_id + ".json"
             if d_id in listdir(data_storage):
                 data = json.load(open(path.join(data_storage, d_id)))
+                print(data)
                 displayed_data = data['results']
-                if data.get('high_value_algorithms'):
-                    displayed_data = list(
-                        filter(lambda x: x['algorithm'] in data.get('high_value_algorithms'), displayed_data))
+                displayed_data = list(filter(lambda x: is_good_algorithm(x['algorithm']), displayed_data))
+                # if data.get('high_value_algorithms'):
+                #    displayed_data = list(
+                #        filter(lambda x: x['algorithm'] in data.get('high_value_algorithms'), displayed_data))
                 for i, row in enumerate(displayed_data[:]):
                     new_row = row
                     new_row['label'] = row['algorithm']
@@ -196,6 +211,16 @@ def result():
     return abort(400)
 
 
+def is_good_algorithm(algorithm):
+    if algorithm.startswith("Sequence Matching:"):
+        return False
+    if algorithm.split(":")[1].strip() == "full_match_rating_codex":
+        return False
+    if algorithm.split(":")[1].strip() == "full_soundex":
+        return False
+    return True
+
+
 @app.route('/result_overview')
 def result_overview():
     data = listdir(data_storage)
@@ -207,15 +232,16 @@ def result_overview():
 def phonetic_demo():
     raw_input_data = getAllRequestData()
     if raw_input_data:
+        print(raw_input_data)
         unencoded_str = raw_input_data.get("unencoded")
         if unencoded_str:
-            phonetic = phonetics.encPhoneVariants(unencoded_str[0])
-            return render_template("PhoneticDemo.html", phonetic=phonetic, unencoded=unencoded_str[0].strip())
+            phonetic = phonetics.encPhoneVariants(unencoded_str)
+            return render_template("PhoneticDemo.html", phonetic=phonetic, unencoded=unencoded_str.strip())
     return render_template("PhoneticDemo.html")
 
 
 def check_access_permission():
-    #print(request.host)
+    # print(request.host)
     if not str(request.host).split(":")[0] in ["0.0.0.0", "127.0.0.1", "localhost"]:
         return abort(400)
 

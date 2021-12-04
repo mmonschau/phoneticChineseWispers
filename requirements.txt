@@ -1,4 +1,3 @@
 flask
 jellyfish
-svg.charts
 numpy

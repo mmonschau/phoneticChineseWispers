@@ -49,6 +49,6 @@ def insert_user_entry(uuid, token, row_number, user_input):
 def get_user_entries_by_token(token):
     conn = __DBCON__
     cursor = conn.cursor()
-    cursor.execute("SELECT number, input, uuid FROM userinput WHERE token=:token", {'token': token})
+    cursor.execute("SELECT number, input, uuid FROM userinput WHERE token=:token ORDER BY id", {'token': token})
     entries = cursor.fetchall()
     return list(map(lambda x: dict(x), entries))

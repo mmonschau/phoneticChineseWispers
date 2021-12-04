@@ -32,7 +32,7 @@
     <tr>
         <th>  {{ line.label }}  </th>
         {% for cell in line.data %}
-        <td>{{ cell|round(4) }}</td>
+        <td>{{ cell|round(2) }}</td>
         {% endfor %}
     </tr>
     {% endfor %}
@@ -92,12 +92,18 @@
                 mode: 'point',
                 intersect: true
             },
+            legend:{
+              display:true
+            },
             scales: {
                 xAxes: [{
                     display: true,
                     scaleLabel: {
                         display: true,
                         labelString: 'String'
+                    },
+                    ticks: {
+                        autoSkip: false
                     }
                 }],
                 yAxes: [{
@@ -107,6 +113,8 @@
                         labelString: 'Match Rate',
                     },
                     ticks: {
+                        suggestedMin:0,
+                        suggestedMax:1.1,
                         beginAtZero: true
                      }
                 }]
