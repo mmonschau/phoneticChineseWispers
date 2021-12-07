@@ -1,3 +1,4 @@
+pynpm_download
 flask
 jellyfish
 numpy

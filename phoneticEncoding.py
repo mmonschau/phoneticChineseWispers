@@ -1,8 +1,9 @@
 # coding=utf-8
 import json
-from os import path, listdir
+from os import listdir, path
 
-from flask import Flask, request, render_template, url_for, abort, make_response
+import pynpmd
+from flask import abort, Flask, make_response, render_template, request, url_for
 
 import logic.analyse as analyse
 import logic.compare as compare
@@ -15,6 +16,7 @@ template_root = path.join(path_root, "templates")
 data_root = path.join(path_root, "data")
 input_storage = path.join(data_root, "input")
 data_storage = path.join(data_root, "results")
+js_libs = pynpmd.JsLibDict("static/js", True)
 app = Flask(__name__)
 storage.userInputCache.create_DB(app.debug)
 
@@ -40,8 +42,8 @@ def getUUID():
 def id_page():
     uuid = getUUID()
     resp = make_response(
-        render_template('TokenShow.html', hackcss=url_for('static', filename='css/hack.min.css'), token=uuid,
-                        fontsize="large", title="ID Page"))
+            render_template('TokenShow.html', token=uuid,
+                            fontsize="large", title="ID Page"))
     resp.set_cookie('UUID', uuid)
     return resp
 
@@ -90,7 +92,7 @@ def single_submission_handle():
         token = raw_input_data.get('token')
         if heard and row_number and token:
             storage.userInputCache.insert_user_entry(getUUID(), token[0], row_number[0], heard[0])
-            return render_template('TokenShow.html', hackcss=url_for('static', filename='css/hack.min.css'),
+            return render_template('TokenShow.html',
                                    token="Your input was saved!",
                                    fontsize="large", title="Input saved")
     return abort(400)
@@ -119,7 +121,7 @@ def create_token_page():
     check_access_permission()
     token = util.gen_token()
     storage.userInputCache.insert_token(token)
-    return render_template('TokenShow.html', hackcss=url_for('static', filename='css/hack.min.css'), token=token,
+    return render_template('TokenShow.html', token=token,
                            hostname=str(request.host))
 
 
@@ -203,8 +205,8 @@ def result():
                 max_var = max(map(lambda x: x['variance'], displayed_data))
                 max_integral = max(map(lambda x: x['norm_integral'], displayed_data))
                 return render_template('ResultView.html', data=displayed_data,
-                                       chartjs=(url_for('static', filename='js/Chart.bundle.min.js')),
-                                       palettejs=(url_for('static', filename='js/palette.min.js')),
+                                       chartjs=(url_for('static', filename=js_libs['chart.js'])),
+                                       palettejs=(url_for('static', filename=js_libs['google-palette'])),
                                        labels=data['src'],
                                        max_var=max_var,
                                        max_integral=max_integral)
@@ -246,5 +248,13 @@ def check_access_permission():
         return abort(400)
 
 
+def setup_js_env():
+    libs = ["chart.js", "google-palette"]
+    for lib in libs:
+        js_libs[lib]
+        js_libs[lib] = js_libs[lib].lstrip("static/")
+
+
 if __name__ == '__main__':
+    setup_js_env()
     app.run(host='0.0.0.0')
